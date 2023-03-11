@@ -8,7 +8,7 @@
     "build": "webpack",
     "ts": "ts-node src/index.ts",
     "js": "node dist/index.js",
-    "lint": "eslint --ext .ts src/ --fix"
+    "lint": "eslint --ext .ts src/ tests/ --fix"
   },
   "husky": {
     "hooks": {
