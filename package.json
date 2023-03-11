@@ -10,12 +10,6 @@
     "js": "node dist/index.js",
     "lint": "eslint --ext .ts src/ tests/ --fix"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm test && npm run lint",
-      "pre-push": "npm test && npm run lint"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nickovchinnikov/react-js-tutorial.git"
