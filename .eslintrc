@@ -8,7 +8,10 @@
       "error",
       {
         "singleQuote": true,
-        "parser": "flow"
+        "parser": "flow",
+        "printWidth": 80,
+        "tabWidth": 4,
+        "useTabs": false
       }
     ],
     "@typescript-eslint/quotes": [
@@ -19,9 +22,10 @@
         "allowTemplateLiterals": true
       }
     ],
-    "@typescript-eslint/no-inferrable-types": 0
+    "@typescript-eslint/no-inferrable-types": 0,
 
-    
+    "indent": ["error", 4, {"SwitchCase": 1}]
+   
   },
   "parserOptions": {
     "sourceType": "module",
