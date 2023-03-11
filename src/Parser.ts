@@ -1,9 +1,8 @@
 import { MakeAction } from './MakeAction';
 
-const validActions = /[\+\-\*\/]/;
-
 export class Parser {
     dataString: string;
+    validActions: RegExp = /[\+\-\*\/]/;
 
     constructor(dataString: string) {
         dataString = dataString.replace(/\s/g, '');
@@ -12,7 +11,10 @@ export class Parser {
             throw new Error('String not supported');
         }
 
-        if (!dataString.match(validActions) || !dataString.match(/[\d]/i)) {
+        if (
+            !dataString.match(this.validActions) ||
+            !dataString.match(/[\d]/i)
+        ) {
             throw new Error('String not supported');
         }
 
@@ -20,9 +22,10 @@ export class Parser {
     }
 
     execute = (): number => {
-        if ((this.dataString.match(validActions) ?? []).length === 1) {
-            const result: RegExpMatchArray | null =
-                this.dataString.match(validActions);
+        if ((this.dataString.match(this.validActions) ?? []).length === 1) {
+            const result: RegExpMatchArray | null = this.dataString.match(
+                this.validActions
+            );
 
             if (result === null || typeof result.index === 'undefined') {
                 throw new Error('Parser error');
@@ -35,7 +38,7 @@ export class Parser {
 
             return this.callMakeAction(
                 action,
-                this.dataString.split(validActions)
+                this.dataString.split(this.validActions)
             );
         }
 
