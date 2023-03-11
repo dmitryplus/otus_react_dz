@@ -1,29 +1,60 @@
 import { MakeAction } from './MakeAction';
 
 export class Parser {
-    dataString: string;
+    originalString: string;
+
     validActions: RegExp = /[\+\-\*\/]/;
+    validActionsGlobal: RegExp = /[\+\-\*\/]/g;
 
-    constructor(dataString: string) {
-        dataString = dataString.replace(/\s/g, '');
+    constructor(originalString: string) {
+        originalString = originalString.replace(/\s/g, '');
 
-        if (dataString.length === 0 || dataString.match(/[a-z]/i)) {
+        if (originalString.length === 0 || originalString.match(/[a-z]/i)) {
             throw new Error('String not supported');
         }
 
         if (
-            !dataString.match(this.validActions) ||
-            !dataString.match(/[\d]/i)
+            !originalString.match(this.validActions) ||
+            !originalString.match(/[\d]/i)
         ) {
             throw new Error('String not supported');
         }
 
-        this.dataString = dataString;
+        this.originalString = originalString;
     }
 
-    execute = (): number => {
-        if ((this.dataString.match(this.validActions) ?? []).length === 1) {
-            const result: RegExpMatchArray | null = this.dataString.match(
+    execute = (dataString: string = ''): number => {
+        let workStringPart: string = dataString;
+        if (workStringPart === '') {
+            workStringPart = this.originalString;
+        }
+
+        if (
+            (workStringPart.match(this.validActionsGlobal) ?? []).length > 1
+        ) {
+            const leftPart = workStringPart.slice(
+                0,
+                workStringPart.indexOf('+')
+            );
+
+            const newString = workStringPart.slice(
+                workStringPart.indexOf('+') + 1
+            );
+
+            console.log(this.originalString);
+            console.log(newString);
+
+            const result = this.execute(newString);
+
+            console.log('result - ' + result);
+
+            return this.execute(leftPart + '+' + result);
+        }
+
+        if (
+            (workStringPart.match(this.validActionsGlobal) ?? []).length === 1
+        ) {
+            const result: RegExpMatchArray | null = workStringPart.match(
                 this.validActions
             );
 
@@ -31,18 +62,18 @@ export class Parser {
                 throw new Error('Parser error');
             }
 
-            const action: string = this.dataString.slice(
+            const action: string = workStringPart.slice(
                 result.index,
                 result.index + 1
             );
 
             return this.callMakeAction(
                 action,
-                this.dataString.split(this.validActions)
+                workStringPart.split(this.validActions)
             );
         }
 
-        return 1;
+        return 10;
     };
 
     callMakeAction = (action: string, nums: Array<string>): number => {

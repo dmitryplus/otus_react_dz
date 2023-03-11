@@ -1,6 +1,22 @@
 import { describe, expect, test } from '@jest/globals';
 import { Parser } from '../src/Parser';
 
+const mockCulc = (action: string, nums: Array<string>): number => {
+    if (action === '+') {
+        return +nums[0] + +nums[1];
+    }
+    if (action === '-') {
+        return +nums[0] - +nums[1];
+    }
+    if (action === '*') {
+        return +nums[0] * +nums[1];
+    }
+    if (action === '/') {
+        return +nums[0] / +nums[1];
+    }
+    return 0;
+};
+
 describe('test parse input string: Parser module', () => {
     test('Parser set symbol to catch Error', () => {
         expect(() => {
@@ -42,16 +58,8 @@ describe('test parse input string: Parser module', () => {
         const parser = new Parser('2+3');
         const spy = jest
             .spyOn(parser, 'callMakeAction')
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            .mockImplementation(
-                (action: string, nums: Array<string>): number => {
-                    if (action === '+' && nums + '' === '2,3') {
-                        return 1;
-                    }
-                    return 0;
-                }
-            );
-        expect(parser.execute()).toBe(1);
+            .mockImplementation(mockCulc);
+        expect(parser.execute()).toBe(5);
 
         spy.mockRestore();
     });
@@ -60,16 +68,8 @@ describe('test parse input string: Parser module', () => {
         const parser = new Parser('2-3');
         const spy = jest
             .spyOn(parser, 'callMakeAction')
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            .mockImplementation(
-                (action: string, nums: Array<string>): number => {
-                    if (action === '-' && nums + '' === '2,3') {
-                        return 1;
-                    }
-                    return 0;
-                }
-            );
-        expect(parser.execute()).toBe(1);
+            .mockImplementation(mockCulc);
+        expect(parser.execute()).toBe(-1);
 
         spy.mockRestore();
     });
@@ -78,34 +78,18 @@ describe('test parse input string: Parser module', () => {
         const parser = new Parser('2*3');
         const spy = jest
             .spyOn(parser, 'callMakeAction')
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            .mockImplementation(
-                (action: string, nums: Array<string>): number => {
-                    if (action === '*' && nums + '' === '2,3') {
-                        return 1;
-                    }
-                    return 0;
-                }
-            );
-        expect(parser.execute()).toBe(1);
+            .mockImplementation(mockCulc);
+        expect(parser.execute()).toBe(6);
 
         spy.mockRestore();
     });
 
-    test('Parser set "2/3" to call MakeAction.execute', () => {
-        const parser = new Parser('2/3');
+    test('Parser set "3/1" to call MakeAction.execute', () => {
+        const parser = new Parser('3/2');
         const spy = jest
             .spyOn(parser, 'callMakeAction')
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            .mockImplementation(
-                (action: string, nums: Array<string>): number => {
-                    if (action === '/' && nums + '' === '2,3') {
-                        return 1;
-                    }
-                    return 0;
-                }
-            );
-        expect(parser.execute()).toBe(1);
+            .mockImplementation(mockCulc);
+        expect(parser.execute()).toBe(1.5);
 
         spy.mockRestore();
     });
@@ -114,16 +98,8 @@ describe('test parse input string: Parser module', () => {
         const parser = new Parser('2 + 3');
         const spy = jest
             .spyOn(parser, 'callMakeAction')
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            .mockImplementation(
-                (action: string, nums: Array<string>): number => {
-                    if (action === '+' && nums + '' === '2,3') {
-                        return 1;
-                    }
-                    return 0;
-                }
-            );
-        expect(parser.execute()).toBe(1);
+            .mockImplementation(mockCulc);
+        expect(parser.execute()).toBe(5);
 
         spy.mockRestore();
     });
@@ -132,16 +108,30 @@ describe('test parse input string: Parser module', () => {
         const parser = new Parser('2 + 3');
         const spy = jest
             .spyOn(parser, 'callMakeAction')
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            .mockImplementation(
-                (action: string, nums: Array<string>): number => {
-                    if (action === '+' && nums + '' === '2,3') {
-                        return 1;
-                    }
-                    return 0;
-                }
-            );
-        expect(parser.execute()).toBe(1);
+            .mockImplementation(mockCulc);
+        expect(parser.execute()).toBe(5);
+
+        spy.mockRestore();
+    });
+
+    test('Parser set "2 + 3 + 3" to call MakeAction.execute', () => {
+        const parser = new Parser('2 + 3 + 3');
+        const spy = jest
+            .spyOn(parser, 'callMakeAction')
+            .mockImplementationOnce(mockCulc);
+
+        expect(parser.execute()).toBe(8);
+
+        spy.mockRestore();
+    });
+
+    test('Parser set "2 + 3 + 3 + 1" to call MakeAction.execute', () => {
+        const parser = new Parser('2 + 3 + 3 + 1');
+        const spy = jest
+            .spyOn(parser, 'callMakeAction')
+            .mockImplementation(mockCulc);
+
+        expect(parser.execute()).toBe(9);
 
         spy.mockRestore();
     });
