@@ -24,56 +24,40 @@ export class Parser {
     }
 
     execute = (dataString: string = ''): number => {
-        let workStringPart: string = dataString;
-        if (workStringPart === '') {
-            workStringPart = this.originalString;
+        let workString: string = dataString;
+        if (workString === '') {
+            workString = this.originalString;
         }
 
-        if (
-            (workStringPart.match(this.validActionsGlobal) ?? []).length > 1
-        ) {
-            const leftPart = workStringPart.slice(
-                0,
-                workStringPart.indexOf('+')
-            );
+        if ((workString.match(this.validActionsGlobal) ?? []).length > 1) {
+            ['*', '/', '-', '+'].forEach((action) => {
+                if (workString.indexOf(action) !== -1) {
+                    const actionPosition = workString.lastIndexOf(action);
 
-            const newString = workStringPart.slice(
-                workStringPart.indexOf('+') + 1
-            );
+                    const leftPart = workString.slice(0, actionPosition);
 
-            console.log(this.originalString);
-            console.log(newString);
+                    const rightPart = workString.slice(
+                        actionPosition + 1,
+                        workString.length
+                    );
 
-            const result = this.execute(newString);
-
-            console.log('result - ' + result);
-
-            return this.execute(leftPart + '+' + result);
+                    workString =
+                        this.execute(leftPart) + '' + action + '' + rightPart;
+                }
+            });
         }
 
-        if (
-            (workStringPart.match(this.validActionsGlobal) ?? []).length === 1
-        ) {
-            const result: RegExpMatchArray | null = workStringPart.match(
-                this.validActions
-            );
+        const result: RegExpMatchArray | null = workString.match(
+            this.validActions
+        );
 
-            if (result === null || typeof result.index === 'undefined') {
-                throw new Error('Parser error');
-            }
-
-            const action: string = workStringPart.slice(
-                result.index,
-                result.index + 1
-            );
-
-            return this.callMakeAction(
-                action,
-                workStringPart.split(this.validActions)
-            );
+        if (result === null || typeof result.index === 'undefined') {
+            throw new Error('Parser error');
         }
 
-        return 10;
+        const action: string = workString.slice(result.index, result.index + 1);
+
+        return this.callMakeAction(action, workString.split(this.validActions));
     };
 
     callMakeAction = (action: string, nums: Array<string>): number => {
