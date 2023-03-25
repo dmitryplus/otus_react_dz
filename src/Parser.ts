@@ -32,92 +32,14 @@ export class Parser {
         console.log('execute - ', workString);
 
         if ((workString.match(this.validActionsGlobal) ?? []).length > 1) {
-            workString.split('').forEach((value, index) => {
-                //console.log(value, ' | ', index);
-
+            workString.split('').forEach((value) => {
+                if (['*', '/'].includes(value)) {
+                    workString = this.splitByActions(workString, value);
+                }
+            });
+            workString.split('').forEach((value) => {
                 if (['+', '-'].includes(value)) {
-                    const action = value;
-
-                    const actionPosition = workString.indexOf(action);
-
-                    const leftArray = workString
-                        .slice(0, actionPosition)
-                        .split('');
-
-                    //console.log(leftArray);
-
-                    let leftPos = 0;
-                    let leftPart = leftArray.join('');
-                    let leftArgument = leftPart;
-
-                    for (let i = leftArray.length - 1; i >= 0; i--) {
-                        if (['*', '/', '-', '+'].indexOf(leftArray[i]) >= 0) {
-                            leftPos = i;
-                            break;
-                        }
-                    }
-
-                    if (leftPos !== 0) {
-                        leftPart = workString.slice(0, leftPos + 1);
-
-                        leftArgument = workString.slice(
-                            leftPos + 1,
-                            actionPosition
-                        );
-                    }
-
-                    const rightArray = workString
-                        .slice(actionPosition + 1, workString.length)
-                        .split('');
-
-                    let rightPos = 0;
-
-                    for (let i = 0; i < rightArray.length; i++) {
-                        if (['*', '/', '-', '+'].indexOf(rightArray[i]) >= 0) {
-                            rightPos = i;
-                            break;
-                        }
-                    }
-
-                    const rightPart = workString.slice(
-                        actionPosition + 1 + rightPos,
-                        workString.length
-                    );
-
-                    const rightArgument = workString.slice(
-                        actionPosition + 1,
-                        actionPosition + 1 + rightPos
-                    );
-
-                    console.log(
-                        leftPos,
-                        ' - ',
-                        leftPart,
-                        ' | ',
-                        leftArgument,
-                        ' | ',
-                        action,
-                        ' | ',
-                        rightArgument,
-                        ' | ',
-                        rightPart
-                    );
-
-                    const result = this.execute(
-                        [
-                            leftPos === 0 ? leftPart : leftArgument,
-                            action,
-                            rightPos === 0 ? rightPart : rightArgument,
-                        ].join('')
-                    );
-
-                    // console.log('result', result);
-
-                    workString = [
-                        leftPos === 0 ? '' : leftPart,
-                        result,
-                        rightPos === 0 ? '' : rightPart,
-                    ].join('');
+                    workString = this.splitByActions(workString, value);
                 }
             });
         }
@@ -145,6 +67,84 @@ export class Parser {
         }
 
         return +workString;
+    };
+
+    splitByActions = (workString: string, value: string): string => {
+        const action = value;
+
+        const actionPosition = workString.indexOf(action);
+
+        const leftArray = workString.slice(0, actionPosition).split('');
+
+        let leftPos = 0;
+        let leftPart = leftArray.join('');
+        let leftArgument = leftPart;
+
+        for (let i = leftArray.length - 1; i >= 0; i--) {
+            if (['*', '/', '-', '+'].indexOf(leftArray[i]) >= 0) {
+                leftPos = i;
+                break;
+            }
+        }
+
+        if (leftPos !== 0) {
+            leftPart = workString.slice(0, leftPos + 1);
+
+            leftArgument = workString.slice(leftPos + 1, actionPosition);
+        }
+
+        const rightArray = workString
+            .slice(actionPosition + 1, workString.length)
+            .split('');
+
+        let rightPos = 0;
+
+        for (let i = 0; i < rightArray.length; i++) {
+            if (['*', '/', '-', '+'].indexOf(rightArray[i]) >= 0) {
+                rightPos = i;
+                break;
+            }
+        }
+
+        const rightPart = workString.slice(
+            actionPosition + 1 + rightPos,
+            workString.length
+        );
+
+        const rightArgument = workString.slice(
+            actionPosition + 1,
+            actionPosition + 1 + rightPos
+        );
+
+        console.log(
+            leftPos,
+            ' - ',
+            leftPart,
+            ' | ',
+            leftArgument,
+            ' | ',
+            action,
+            ' | ',
+            rightArgument,
+            ' | ',
+            rightPart
+        );
+
+        const result = this.execute(
+            [
+                leftPos === 0 ? leftPart : leftArgument,
+                action,
+                rightPos === 0 ? rightPart : rightArgument,
+            ].join('')
+        );
+
+        // console.log('result', result);
+
+        return [
+            leftPos === 0 ? '' : leftPart,
+            result,
+            rightPos === 0 ? '' : rightPart,
+        ].join('');
     };
 
     callMakeAction = (action: string, nums: Array<string>): number => {

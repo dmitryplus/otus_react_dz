@@ -179,8 +179,47 @@ describe('test parse input string: Parser module', () => {
     //     spy.mockRestore();
     // });
 
-    test('Parser set "22644 + 4532 - 340" to call MakeAction.execute', () => {
-        const parser = new Parser('22644 + 4532 - 340');
+    // test('Parser set "22644 + 4532 - 340" to call MakeAction.execute', () => {
+    //     const parser = new Parser('22644 + 4532 - 340');
+    //     const spy = jest
+    //         .spyOn(parser, 'callMakeAction')
+    //         .mockImplementationOnce(
+    //             (action: string, nums: Array<string>): number => {
+    //                 console.log(action, nums);
+
+    //                 if (
+    //                     action === '+' &&
+    //                     nums[0] === '22644' &&
+    //                     nums[1] === '4532'
+    //                 ) {
+    //                     return 27176;
+    //                 }
+
+    //                 return 0;
+    //             }
+    //         )
+    //         .mockImplementationOnce(
+    //             (action: string, nums: Array<string>): number => {
+    //                 console.log(action, nums);
+
+    //                 if (
+    //                     action === '-' &&
+    //                     nums[0] === '27176' &&
+    //                     nums[1] === '340'
+    //                 ) {
+    //                     return 26836;
+    //                 }
+
+    //                 return 0;
+    //             }
+    //         );
+
+    //     expect(parser.execute()).toBe(26836);
+    //     spy.mockRestore();
+    // });
+
+    test('Parser set "22644 + 4532 * 340" to call MakeAction.execute', () => {
+        const parser = new Parser('22644 + 4532 * 340');
         const spy = jest
             .spyOn(parser, 'callMakeAction')
             .mockImplementationOnce(
@@ -188,11 +227,11 @@ describe('test parse input string: Parser module', () => {
                     console.log(action, nums);
 
                     if (
-                        action === '+' &&
-                        nums[0] === '22644' &&
-                        nums[1] === '4532'
+                        action === '*' &&
+                        nums[0] === '4532' &&
+                        nums[1] === '340'
                     ) {
-                        return 27176;
+                        return 1540880;
                     }
 
                     return 0;
@@ -203,18 +242,18 @@ describe('test parse input string: Parser module', () => {
                     console.log(action, nums);
 
                     if (
-                        action === '-' &&
-                        nums[0] === '27176' &&
-                        nums[1] === '340'
+                        action === '+' &&
+                        nums[0] === '22644' &&
+                        nums[1] === '1540880'
                     ) {
-                        return 26836;
+                        return 1563542;
                     }
 
                     return 0;
                 }
             );
 
-        expect(parser.execute()).toBe(26836);
+        expect(parser.execute()).toBe(1563542);
         spy.mockRestore();
     });
 
