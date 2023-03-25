@@ -29,8 +29,6 @@ export class Parser {
             workString = this.originalString;
         }
 
-        console.log('execute - ', workString);
-
         if ((workString.match(this.validActionsGlobal) ?? []).length > 1) {
             workString.split('').forEach((value) => {
                 if (['*', '/'].includes(value)) {
@@ -43,8 +41,6 @@ export class Parser {
                 }
             });
         }
-
-        // console.log(workString);
 
         if ((workString.match(this.validActionsGlobal) ?? []).length === 1) {
             const result: RegExpMatchArray | null = workString.match(
@@ -116,20 +112,6 @@ export class Parser {
             actionPosition + 1 + rightPos
         );
 
-        console.log(
-            leftPos,
-            ' - ',
-            leftPart,
-            ' | ',
-            leftArgument,
-            ' | ',
-            action,
-            ' | ',
-            rightArgument,
-            ' | ',
-            rightPart
-        );
-
         const result = this.execute(
             [
                 leftPos === 0 ? leftPart : leftArgument,
@@ -137,8 +119,6 @@ export class Parser {
                 rightPos === 0 ? rightPart : rightArgument,
             ].join('')
         );
-
-        // console.log('result', result);
 
         return [
             leftPos === 0 ? '' : leftPart,
