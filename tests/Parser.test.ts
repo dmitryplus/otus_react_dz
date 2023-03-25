@@ -179,6 +179,37 @@ describe('test parse input string: Parser module', () => {
         spy.mockRestore();
     });
 
+    test('Parser set "224 + 45 - 34" to call MakeAction.execute', () => {
+        const parser = new Parser('224 + 45 - 34');
+        const spy = jest
+            .spyOn(parser, 'callMakeAction')
+            .mockImplementationOnce(
+                (action: string, nums: Array<string>): number => {
+                    if (
+                        action === '+' &&
+                        nums[0] === '224' &&
+                        nums[1] === '45'
+                    ) {
+                        return 1;
+                    }
+
+                    return 0;
+                }
+            )
+            .mockImplementationOnce(
+                (action: string, nums: Array<string>): number => {
+                    if (action === '-' && nums[0] === '1' && nums[1] === '34') {
+                        return 1;
+                    }
+
+                    return 0;
+                }
+            );
+
+        expect(parser.execute()).toBe(1);
+        spy.mockRestore();
+    });
+
     // test('Parser set "2 + 3 + 3 + 1" to call MakeAction.execute', () => {
     //     const parser = new Parser('2 + 3 + 3 + 1');
     //     const spy = jest
