@@ -30,12 +30,12 @@ export class Parser {
         }
 
         if ((workString.match(this.validActionsGlobal) ?? []).length > 1) {
-            workString.split('').forEach((value) => {
+            workString.split('').forEach((value: string) => {
                 if (['*', '/'].includes(value)) {
                     workString = this.splitByActions(workString, value);
                 }
             });
-            workString.split('').forEach((value) => {
+            workString.split('').forEach((value: string) => {
                 if (['+', '-'].includes(value)) {
                     workString = this.splitByActions(workString, value);
                 }
@@ -66,17 +66,19 @@ export class Parser {
     };
 
     splitByActions = (workString: string, value: string): string => {
-        const action = value;
+        const action: string = value;
 
-        const actionPosition = workString.indexOf(action);
+        const actionPosition: number = workString.indexOf(action);
 
-        const leftArray = workString.slice(0, actionPosition).split('');
+        const leftArray: Array<string> = workString
+            .slice(0, actionPosition)
+            .split('');
 
-        let leftPos = 0;
-        let leftPart = leftArray.join('');
-        let leftArgument = leftPart;
+        let leftPos: number = 0;
+        let leftPart: string = leftArray.join('');
+        let leftArgument: string = leftPart;
 
-        for (let i = leftArray.length - 1; i >= 0; i--) {
+        for (let i: number = leftArray.length - 1; i >= 0; i--) {
             if (['*', '/', '-', '+'].indexOf(leftArray[i]) >= 0) {
                 leftPos = i;
                 break;
@@ -89,30 +91,30 @@ export class Parser {
             leftArgument = workString.slice(leftPos + 1, actionPosition);
         }
 
-        const rightArray = workString
+        const rightArray: Array<string> = workString
             .slice(actionPosition + 1, workString.length)
             .split('');
 
-        let rightPos = 0;
+        let rightPos: number = 0;
 
-        for (let i = 0; i < rightArray.length; i++) {
+        for (let i: number = 0; i < rightArray.length; i++) {
             if (['*', '/', '-', '+'].indexOf(rightArray[i]) >= 0) {
                 rightPos = i;
                 break;
             }
         }
 
-        const rightPart = workString.slice(
+        const rightPart: string = workString.slice(
             actionPosition + 1 + rightPos,
             workString.length
         );
 
-        const rightArgument = workString.slice(
+        const rightArgument: string = workString.slice(
             actionPosition + 1,
             actionPosition + 1 + rightPos
         );
 
-        const result = this.execute(
+        const result: number = this.execute(
             [
                 leftPos === 0 ? leftPart : leftArgument,
                 action,
