@@ -74,58 +74,58 @@ export class Parser {
             .slice(0, actionPosition)
             .split('');
 
-        let leftPos: number = 0;
+        let leftActionPos: number = 0;
         let leftPart: string = leftArray.join('');
         let leftArgument: string = leftPart;
 
         for (let i: number = leftArray.length - 1; i >= 0; i--) {
             if (['*', '/', '-', '+'].indexOf(leftArray[i]) >= 0) {
-                leftPos = i;
+                leftActionPos = i;
                 break;
             }
         }
 
-        if (leftPos !== 0) {
-            leftPart = workString.slice(0, leftPos + 1);
+        if (leftActionPos !== 0) {
+            leftPart = workString.slice(0, leftActionPos + 1);
 
-            leftArgument = workString.slice(leftPos + 1, actionPosition);
+            leftArgument = workString.slice(leftActionPos + 1, actionPosition);
         }
 
         const rightArray: Array<string> = workString
             .slice(actionPosition + 1, workString.length)
             .split('');
 
-        let rightPos: number = 0;
+        let rightActionPos: number = 0;
 
         for (let i: number = 0; i < rightArray.length; i++) {
             if (['*', '/', '-', '+'].indexOf(rightArray[i]) >= 0) {
-                rightPos = i;
+                rightActionPos = i;
                 break;
             }
         }
 
         const rightPart: string = workString.slice(
-            actionPosition + 1 + rightPos,
+            actionPosition + 1 + rightActionPos,
             workString.length
         );
 
         const rightArgument: string = workString.slice(
             actionPosition + 1,
-            actionPosition + 1 + rightPos
+            actionPosition + 1 + rightActionPos
         );
 
         const result: number = this.execute(
             [
-                leftPos === 0 ? leftPart : leftArgument,
+                leftActionPos === 0 ? leftPart : leftArgument,
                 action,
-                rightPos === 0 ? rightPart : rightArgument,
+                rightActionPos === 0 ? rightPart : rightArgument,
             ].join('')
         );
 
         return [
-            leftPos === 0 ? '' : leftPart,
+            leftActionPos === 0 ? '' : leftPart,
             result,
-            rightPos === 0 ? '' : rightPart,
+            rightActionPos === 0 ? '' : rightPart,
         ].join('');
     };
 
