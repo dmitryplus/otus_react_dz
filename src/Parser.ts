@@ -30,85 +30,7 @@ export class Parser {
         }
 
         if ((workString.match(this.validActionsGlobal) ?? []).length > 1) {
-            const startBracket: string = '(';
-            const stopBracket: string = ')';
-
-            const startBracketStack: Array<number> = [];
-            let lastIndex = -1;
-            while (
-                (lastIndex = workString.indexOf(
-                    startBracket,
-                    lastIndex + 1
-                )) !== -1
-            ) {
-                startBracketStack.push(lastIndex);
-            }
-
-            const stopBracketStack: Array<number> = [];
-            lastIndex = -1;
-            while (
-                (lastIndex = workString.indexOf(stopBracket, lastIndex + 1)) !==
-                -1
-            ) {
-                stopBracketStack.push(lastIndex);
-            }
-
-            if (startBracketStack.length !== stopBracketStack.length) {
-                throw new Error('String not supported');
-            }
-
-            if (startBracketStack.length) {
-                const startBracketPos: number =
-                    workString.indexOf(startBracket);
-
-                let stopBracketPos: number = 0;
-
-                workString.split('').forEach((value: string, index: number) => {
-                    if (index > startBracketPos) {
-                        if (value === stopBracket) {
-                            startBracketStack.pop();
-                        }
-
-                        if (
-                            startBracketStack.length === 0 &&
-                            stopBracketPos === 0
-                        ) {
-                            stopBracketPos = index;
-                        }
-                    }
-                });
-
-                const leftPart = workString.slice(0, startBracketPos);
-
-                const testResult = workString.slice(
-                    startBracketPos + startBracket.length,
-                    stopBracketPos
-                );
-
-                const rightPart = workString.slice(
-                    stopBracketPos + 1,
-                    workString.length
-                );
-
-                console.log(
-                    workString,
-                    ' = ',
-                    leftPart,
-                    ' | ',
-                    testResult,
-                    ' | ',
-                    rightPart
-                );
-
-                const result = this.execute(
-                    workString.slice(
-                        startBracketPos + startBracket.length,
-                        stopBracketPos
-                    )
-                );
-
-                workString = [leftPart, result, rightPart].join('');
-            }
+            workString = this.splitByBrackets(workString, '(');
 
             workString.split('').forEach((value: string) => {
                 if (['*', '/'].includes(value)) {
@@ -207,6 +129,69 @@ export class Parser {
             result,
             rightActionPos === 0 ? '' : rightPart,
         ].join('');
+    };
+
+    splitByBrackets = (
+        workString: string,
+        startBracket: string = '('
+    ): string => {
+        const stopBracket: string = ')';
+
+        const startBracketStack: Array<number> = [];
+        let lastIndex = -1;
+        while (
+            (lastIndex = workString.indexOf(startBracket, lastIndex + 1)) !== -1
+        ) {
+            startBracketStack.push(lastIndex);
+        }
+
+        const stopBracketStack: Array<number> = [];
+        lastIndex = -1;
+        while (
+            (lastIndex = workString.indexOf(stopBracket, lastIndex + 1)) !== -1
+        ) {
+            stopBracketStack.push(lastIndex);
+        }
+
+        if (startBracketStack.length !== stopBracketStack.length) {
+            throw new Error('String not supported');
+        }
+
+        if (startBracketStack.length === 0) {
+            return workString;
+        }
+
+        const startBracketPos: number = workString.indexOf(startBracket);
+
+        let stopBracketPos: number = 0;
+
+        workString.split('').forEach((value: string, index: number) => {
+            if (index > startBracketPos) {
+                if (value === stopBracket) {
+                    startBracketStack.pop();
+                }
+
+                if (startBracketStack.length === 0 && stopBracketPos === 0) {
+                    stopBracketPos = index;
+                }
+            }
+        });
+
+        const leftPart = workString.slice(0, startBracketPos);
+
+        const result = this.execute(
+            workString.slice(
+                startBracketPos + startBracket.length,
+                stopBracketPos
+            )
+        );
+
+        const rightPart = workString.slice(
+            stopBracketPos + 1,
+            workString.length
+        );
+
+        return [leftPart, result, rightPart].join('');
     };
 
     callMakeAction = (action: string, nums: Array<string>): number => {
