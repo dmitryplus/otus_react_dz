@@ -1,14 +1,18 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 
 
 const createPath = (dirName) => path.resolve(__dirname, dirName);
 
-const regExpForRules = /\.ts?$/;
+const regExpForRules = /\.(jsx|js|ts)$/;
 
 module.exports = {
 	context: createPath('src'),
 	mode: 'development',
-	entry: './index.ts',
+	entry: './index.js',
 	output: {
 		filename: 'index.js',
 		path: createPath('dist'),
@@ -23,7 +27,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: regExpForRules,
+				test: /\.(jsx|js)$/,
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',
@@ -38,7 +42,8 @@ module.exports = {
 									} 
 								}
 							],
-							'@babel/preset-typescript'
+							'@babel/preset-typescript',
+							'@babel/preset-react'
 						],
 						plugins: [
 							'@babel/plugin-proposal-class-properties'
@@ -47,13 +52,24 @@ module.exports = {
 				}
 			},
 			{
-				test: regExpForRules,
+				test: /\.ts$/,
 				use: 'ts-loader',
 				exclude: /node_modules/,
 			}
 		],
 	  },
     plugins: [
-
+        new HtmlWebpackPlugin({
+            template: 'index.html'
+        }),
+        new CopyPlugin({
+            patterns: [
+               { 
+                from: createPath('src/favicon.ico'), 
+                to: createPath('dist'),  
+            },
+            ],
+           }),
+        new CleanWebpackPlugin(),
 	]
 }
