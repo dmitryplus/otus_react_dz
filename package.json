@@ -13,14 +13,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nickovchinnikov/react-js-tutorial.git"
+    "url": "git+git@github.com:dmitryplus/otus_react_dz.git"
   },
-  "author": "Nick Ovchinnikov",
+  "author": "Dmitry Plushchenkov",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nickovchinnikov/react-js-tutorial/issues"
-  },
-  "homepage": "https://github.com/nickovchinnikov/react-js-tutorial#readme",
+  "homepage": "https://github.com/dmitryplus/otus_react_dz#readme",
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
