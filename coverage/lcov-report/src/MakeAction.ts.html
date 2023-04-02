@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.42% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/19</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -109,7 +109,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
@@ -118,29 +118,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { mult } from './MathOperators/Multiplication';
@@ -157,12 +157,12 @@ export class MakeAction {
         }
 &nbsp;
         switch (action) {
-<span class="branch-0 cbranch-no" title="branch not covered" >            case '+':</span>
-<span class="cstat-no" title="statement not covered" >                return this.getAddition(params[0], params[1]);</span>
-<span class="branch-1 cbranch-no" title="branch not covered" >            case '-':</span>
-<span class="cstat-no" title="statement not covered" >                return this.getSubtraction(params[0], params[1]);</span>
-<span class="branch-2 cbranch-no" title="branch not covered" >            case '/':</span>
-<span class="cstat-no" title="statement not covered" >                return this.getDivision(params[0], params[1]);</span>
+            case '+':
+                return this.getAddition(params[0], params[1]);
+            case '-':
+                return this.getSubtraction(params[0], params[1]);
+            case '/':
+                return this.getDivision(params[0], params[1]);
             case '*':
                 return this.getMultiplication(params[0], params[1]);
             default:
@@ -173,14 +173,14 @@ export class MakeAction {
     getMultiplication = function (a: number, b: number): number {
         return mult(a, b);
     };
-    getDivision = <span class="fstat-no" title="function not covered" >fu</span>nction (a: number, b: number): number {
-<span class="cstat-no" title="statement not covered" >        return div(a, b);</span>
+    getDivision = function (a: number, b: number): number {
+        return div(a, b);
     };
-    getAddition = <span class="fstat-no" title="function not covered" >fu</span>nction (a: number, b: number): number {
-<span class="cstat-no" title="statement not covered" >        return add(a, b);</span>
+    getAddition = function (a: number, b: number): number {
+        return add(a, b);
     };
-    getSubtraction = <span class="fstat-no" title="function not covered" >fu</span>nction (a: number, b: number): number {
-<span class="cstat-no" title="statement not covered" >        return sub(a, b);</span>
+    getSubtraction = function (a: number, b: number): number {
+        return sub(a, b);
     };
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -190,7 +190,7 @@ export class MakeAction {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-04-02T14:16:12.055Z
+                at 2023-04-02T15:58:30.973Z
             </div>
         <script src="../prettify.js"></script>
         <script>

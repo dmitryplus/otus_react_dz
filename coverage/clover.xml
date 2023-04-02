@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1680444972084" clover="3.2.0">
-  <project timestamp="1680444972084" name="All files">
-    <metrics statements="108" coveredstatements="99" conditionals="63" coveredconditionals="57" methods="19" coveredmethods="15" elements="190" coveredelements="171" complexity="0" loc="108" ncloc="108" packages="2" files="6" classes="6"/>
+<coverage generated="1680451111001" clover="3.2.0">
+  <project timestamp="1680451111001" name="All files">
+    <metrics statements="108" coveredstatements="105" conditionals="63" coveredconditionals="60" methods="19" coveredmethods="18" elements="190" coveredelements="183" complexity="0" loc="108" ncloc="108" packages="2" files="6" classes="6"/>
     <package name="src">
-      <metrics statements="98" coveredstatements="89" conditionals="61" coveredconditionals="55" methods="15" coveredmethods="11"/>
+      <metrics statements="98" coveredstatements="95" conditionals="61" coveredconditionals="58" methods="15" coveredmethods="14"/>
       <file name="MakeAction.ts" path="/home/dmitry/sites/react_course/first_dz/src/MakeAction.ts">
-        <metrics statements="18" coveredstatements="12" conditionals="7" coveredconditionals="4" methods="6" coveredmethods="3"/>
-        <line num="7" count="7" type="stmt"/>
+        <metrics statements="18" coveredstatements="18" conditionals="7" coveredconditionals="7" methods="6" coveredmethods="6"/>
+        <line num="7" count="11" type="stmt"/>
         <line num="8" count="11" type="stmt"/>
         <line num="10" count="7" type="cond" truecount="2" falsecount="0"/>
         <line num="11" count="2" type="stmt"/>
-        <line num="14" count="5" type="cond" truecount="2" falsecount="3"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="22" count="4" type="stmt"/>
+        <line num="14" count="5" type="cond" truecount="5" falsecount="0"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
-        <line num="28" count="7" type="stmt"/>
-        <line num="29" count="3" type="stmt"/>
-        <line num="31" count="7" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="34" count="7" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="37" count="7" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
+        <line num="28" count="11" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="31" count="11" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="34" count="11" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="37" count="11" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
       </file>
       <file name="Parser.ts" path="/home/dmitry/sites/react_course/first_dz/src/Parser.ts">
         <metrics statements="80" coveredstatements="77" conditionals="54" coveredconditionals="51" methods="9" coveredmethods="8"/>
@@ -126,7 +126,7 @@
       <file name="Multiplication.ts" path="/home/dmitry/sites/react_course/first_dz/src/MathOperators/Multiplication.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="3" type="stmt"/>
-        <line num="2" count="7" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
       </file>
       <file name="Subtraction.ts" path="/home/dmitry/sites/react_course/first_dz/src/MathOperators/Subtraction.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
