@@ -1,10 +1,10 @@
-# react-js-tutorial
+# OTUS: React.js Developer, домашние задания Плющенков Дмитрий
 
-## Lesson 1:
-Basic configuration for the project on the master branch. What configurations you can find:
+## Консольный калькулятор:
+Используемая конфигурация:
 * Babel
 * Webpack
 * Typescript
 * Eslint
 * Jest
-* Precommit hooks / husky
+* Prepush hooks / husky
