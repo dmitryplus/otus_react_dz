@@ -314,8 +314,6 @@ describe('test parse input string: Parser module', () => {
             .spyOn(parser, 'callMakeAction')
             .mockImplementationOnce(
                 (action: string, nums: Array<string>): number => {
-                    console.log(action, nums);
-
                     if (action === '+' && nums[0] === '3' && nums[1] === '4') {
                         return 7;
                     }
@@ -325,8 +323,6 @@ describe('test parse input string: Parser module', () => {
             )
             .mockImplementationOnce(
                 (action: string, nums: Array<string>): number => {
-                    console.log(action, nums);
-
                     if (action === '+' && nums[0] === '2' && nums[1] === '7') {
                         return 9;
                     }
@@ -336,8 +332,6 @@ describe('test parse input string: Parser module', () => {
             )
             .mockImplementationOnce(
                 (action: string, nums: Array<string>): number => {
-                    console.log(action, nums);
-
                     if (action === '+' && nums[0] === '9' && nums[1] === '1') {
                         return 10;
                     }
@@ -355,8 +349,6 @@ describe('test parse input string: Parser module', () => {
             .spyOn(parser, 'callMakeAction')
             .mockImplementationOnce(
                 (action: string, nums: Array<string>): number => {
-                    console.log(action, nums);
-
                     if (
                         action === '*' &&
                         nums[0] === '4532' &&
@@ -370,8 +362,6 @@ describe('test parse input string: Parser module', () => {
             )
             .mockImplementationOnce(
                 (action: string, nums: Array<string>): number => {
-                    console.log(action, nums);
-
                     if (
                         action === '+' &&
                         nums[0] === '453' &&
@@ -385,8 +375,6 @@ describe('test parse input string: Parser module', () => {
             )
             .mockImplementationOnce(
                 (action: string, nums: Array<string>): number => {
-                    console.log(action, nums);
-
                     if (
                         action === '+' &&
                         nums[0] === '22644' &&
