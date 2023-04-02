@@ -11,7 +11,9 @@
     "lint": "eslint --ext .ts src/ tests/ --fix",
     "debug": "node dist/index.js --inspect && npm run build",
     "prepare": "husky install",
-    "start": "npx webpack-dev-server --mode development --open --hot"
+    "start": "npx webpack-dev-server --mode development --open --hot",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,14 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.0",
     "@jest/globals": "^29.5.0",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
     "@types/jest": "^29.4.0",
     "@types/react": "^18.0.32",
     "@types/react-dom": "^18.0.11",
