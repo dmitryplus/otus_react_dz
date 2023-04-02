@@ -137,21 +137,15 @@ export class Parser {
     ): string => {
         const stopBracket: string = ')';
 
-        const startBracketStack: Array<number> = [];
-        let lastIndex = -1;
-        while (
-            (lastIndex = workString.indexOf(startBracket, lastIndex + 1)) !== -1
-        ) {
-            startBracketStack.push(lastIndex);
-        }
+        const startBracketStack: Array<number> = this.#getSubstringPosions(
+            workString,
+            startBracket
+        );
 
-        const stopBracketStack: Array<number> = [];
-        lastIndex = -1;
-        while (
-            (lastIndex = workString.indexOf(stopBracket, lastIndex + 1)) !== -1
-        ) {
-            stopBracketStack.push(lastIndex);
-        }
+        const stopBracketStack: Array<number> = this.#getSubstringPosions(
+            workString,
+            stopBracket
+        );
 
         if (startBracketStack.length !== stopBracketStack.length) {
             throw new Error('String not supported');
@@ -197,5 +191,20 @@ export class Parser {
     callMakeAction = (action: string, nums: Array<string>): number => {
         const makeAction: MakeAction = new MakeAction();
         return makeAction.execute(action, nums);
+    };
+
+    #getSubstringPosions = (
+        workString: string,
+        substring: string
+    ): Array<number> => {
+        const substringPositionsStack: Array<number> = [];
+        let lastIndex = -1;
+        while (
+            (lastIndex = workString.indexOf(substring, lastIndex + 1)) !== -1
+        ) {
+            substringPositionsStack.push(lastIndex);
+        }
+
+        return substringPositionsStack;
     };
 }
