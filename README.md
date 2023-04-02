@@ -8,3 +8,13 @@
 * Eslint
 * Jest
 * Prepush hooks / husky
+
+## Запуск в консоли
+
+`npm run calc`
+
+Возможные операции: * / + - ( )
+
+## Запуск тестов
+
+`npm run test`
