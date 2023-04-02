@@ -1,5 +1,30 @@
 import { Parser } from './Parser';
+import { createInterface } from 'readline';
 
-const parser = new Parser('223 + 3');
+const rl = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
 
-parser.execute();
+const question = (): Promise<void> =>
+    new Promise((resolve) => {
+        rl.question('> ', (answer: string) => {
+            const parser = new Parser(answer);
+
+            const result = parser.execute();
+
+            if (result) {
+                console.log(`Result: ${result}`);
+            }
+
+            resolve();
+        });
+    });
+
+async function app(): Promise<null> {
+    while (true) {
+        await question();
+    }
+}
+
+app();

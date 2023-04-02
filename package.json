@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "ts": "ts-node src/index.ts",
+    "calc": "ts-node src/index.ts",
     "js": "node dist/index.js",
     "lint": "eslint --ext .ts src/ tests/ --fix",
     "debug": "node dist/index.js --inspect && npm run build",
