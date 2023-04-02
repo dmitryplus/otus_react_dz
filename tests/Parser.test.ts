@@ -408,8 +408,6 @@ describe('test parse input string: Parser module', () => {
             .spyOn(parser, 'callMakeAction')
             .mockImplementationOnce(
                 (action: string, nums: Array<string>): number => {
-                    console.log(action, nums);
-
                     if (action === '+' && nums[0] === '4' && nums[1] === '5') {
                         return 9;
                     }
@@ -419,8 +417,6 @@ describe('test parse input string: Parser module', () => {
             )
             .mockImplementationOnce(
                 (action: string, nums: Array<string>): number => {
-                    console.log(action, nums);
-
                     if (action === '*' && nums[0] === '5' && nums[1] === '3') {
                         return 15;
                     }
@@ -430,8 +426,6 @@ describe('test parse input string: Parser module', () => {
             )
             .mockImplementationOnce(
                 (action: string, nums: Array<string>): number => {
-                    console.log(action, nums);
-
                     if (action === '*' && nums[0] === '9' && nums[1] === '2') {
                         return 18;
                     }
@@ -441,8 +435,6 @@ describe('test parse input string: Parser module', () => {
             )
             .mockImplementationOnce(
                 (action: string, nums: Array<string>): number => {
-                    console.log(action, nums);
-
                     if (
                         action === '+' &&
                         nums[0] === '15' &&
@@ -456,8 +448,6 @@ describe('test parse input string: Parser module', () => {
             )
             .mockImplementationOnce(
                 (action: string, nums: Array<string>): number => {
-                    console.log(action, nums);
-
                     if (action === '+' && nums[0] === '3' && nums[1] === '32') {
                         return 35;
                     }
