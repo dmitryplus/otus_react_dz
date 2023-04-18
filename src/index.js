@@ -1,3 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
-render(<h1>React here22!</h1>, document.getElementById('root'));
+import ReactDOM from 'react-dom/client';
+import { Calculator } from './Components/Calculator';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <React.StrictMode>
+        <Calculator />
+    </React.StrictMode>
+);
