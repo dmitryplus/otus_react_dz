@@ -1,22 +1,16 @@
 import { MakeAction } from './MakeAction';
+import { Validator } from './Validator';
 
 export class Parser {
     originalString: string;
-
-    validActions: RegExp = /[\+\-\*\/]/;
-    validActionsGlobal: RegExp = /[\+\-\*\/]/g;
+    validator: Validator;
 
     constructor(originalString: string) {
         originalString = originalString.replace(/\s/g, '');
 
-        if (originalString.length === 0 || originalString.match(/[a-z]/i)) {
-            throw new Error('String not supported');
-        }
+        this.validator = new Validator();
 
-        if (
-            !originalString.match(this.validActions) ||
-            !originalString.match(/[\d]/i)
-        ) {
+        if (!this.validator.execute(originalString)) {
             throw new Error('String not supported');
         }
 
@@ -29,7 +23,7 @@ export class Parser {
             workString = this.originalString;
         }
 
-        if ((workString.match(this.validActionsGlobal) ?? []).length > 1) {
+        if ((workString.match(this.validator.actionsGlobal) ?? []).length > 1) {
             workString = this.splitByBrackets(workString, '(');
 
             workString.split('').forEach((value: string) => {
@@ -44,9 +38,9 @@ export class Parser {
             });
         }
 
-        if ((workString.match(this.validActionsGlobal) ?? []).length === 1) {
+        if ((workString.match(this.validator.actionsGlobal) ?? []).length === 1) {
             const result: RegExpMatchArray | null = workString.match(
-                this.validActions
+                this.validator.actions
             );
 
             if (result === null || typeof result.index === 'undefined') {
@@ -60,7 +54,7 @@ export class Parser {
 
             return this.callMakeAction(
                 action,
-                workString.split(this.validActions)
+                workString.split(this.validator.actions)
             );
         }
 

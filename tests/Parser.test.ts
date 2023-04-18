@@ -36,6 +36,16 @@ describe('test parse input string: Parser module', () => {
             new Parser('2#3');
         }).toThrow();
     });
+    test('Parser set wrong action "2+#3" to catch Error', () => {
+        expect(() => {
+            new Parser('2#3');
+        }).toThrow();
+    });
+    test('Parser set wrong action "2+_3" to catch Error', () => {
+        expect(() => {
+            new Parser('2+_3');
+        }).toThrow();
+    });
     test('Parser set "2+3" to call MakeAction.execute', () => {
         const parser = new Parser('2+3');
         const spy = jest
