@@ -10,7 +10,7 @@ export const Button = ({ label }: ButtonProps) => {
     }
 
     return (
-        <button type='button' onClick={() => console.log(label)}>
+        <button type='button' onClick={() => alert(label)}>
             {label}
         </button>
     );
