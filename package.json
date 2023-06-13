@@ -13,7 +13,9 @@
     "prepare": "husky install",
     "start": "npx webpack-dev-server --mode development --open --hot",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "coverage-badge": "coverage-badger -r coverage/clover.xml -d coverage/",
+    "coverage": "npm test -- --coverage && npm run coverage-badge"
   },
   "repository": {
     "type": "git",
@@ -47,6 +49,7 @@
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
+    "coverage-badger": "^1.0.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-jest": "^27.2.1",
