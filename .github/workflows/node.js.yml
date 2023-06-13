@@ -26,8 +26,7 @@ jobs:
 
       # basically npm install but only installs from package-lock
       - run: npm ci
-      - run: npm run lint
-      - run: npm t
+      - run: npm run test
 
       # Only run the coverage once
       - if: ${{ matrix.node-version == '16.x' }}
@@ -49,7 +48,7 @@ jobs:
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: e13370a0549a5f5822726a971e5bab6f
-          filename: your-repo-name__${{ env.BRANCH }}.json
+          filename: otus_react_dz__${{ env.BRANCH }}.json
           label: Test Coverage
           message: ${{ env.COVERAGE }}
           color: green
