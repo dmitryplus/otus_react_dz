@@ -13,7 +13,7 @@ module.exports = {
 	entry: './index.js',
 	output: {
 		filename: 'index.js',
-		path: createPath('dist'),
+		path: createPath('docs'),
 	},
 	resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
@@ -32,12 +32,12 @@ module.exports = {
 					options: {
 						presets: [
 							[
-								'@babel/preset-env', 
-								{ 
-									targets: 
-									{ 
-										node: 'current' 
-									} 
+								'@babel/preset-env',
+								{
+									targets:
+									{
+										node: 'current'
+									}
 								}
 							],
 							'@babel/preset-typescript',
@@ -57,9 +57,9 @@ module.exports = {
         }),
         new CopyPlugin({
             patterns: [
-               { 
-                from: createPath('src/favicon.ico'), 
-                to: createPath('dist'),  
+               {
+                from: createPath('src/favicon.ico'),
+                to: createPath('dist'),
             },
             ],
            }),
