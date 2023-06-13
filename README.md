@@ -1,4 +1,4 @@
-[![cov](https://dmitryplus.github.io/otus_react_dz/badges/coverage.svg)](https://github.com/dmitryplus/otus_react_dz/actions)
+[![Покрытие тестами](https://dmitryplus.github.io/otus_react_dz/badges/coverage.svg)](https://github.com/dmitryplus/otus_react_dz/actions)
 
 
 # OTUS: React.js Developer, домашние задания Плющенков Дмитрий
