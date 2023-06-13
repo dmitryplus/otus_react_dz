@@ -15,7 +15,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "coverage-badge": "coverage-badger -r coverage/clover.xml -d coverage/",
-    "coverage": "npm test -- --coverage && npm run coverage-badge"
+    "coverage": "npm test && npm run coverage-badge"
   },
   "repository": {
     "type": "git",
