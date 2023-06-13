@@ -23,7 +23,7 @@ module.exports = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: "docs/coverage",
   coverageThreshold: {
     global: {
       branches: 80,
