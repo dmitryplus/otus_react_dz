@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --coverageReporters='text-summary'",
+    "test": "jest",
     "build": "webpack",
     "calc": "ts-node src/consoleCalculator.ts",
     "js": "node dist/index.js",
@@ -15,7 +15,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "coverage-badge": "coverage-badger -r coverage/clover.xml -d badges/",
-    "coverage": "npm test && npm run coverage-badge"
+    "coverage": "npm test -- --coverage && npm run coverage-badge"
   },
   "repository": {
     "type": "git",

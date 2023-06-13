@@ -41,12 +41,13 @@ module.exports = {
   //coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
-  // coverageReporters: [
-  //   "json",
-  //   "text",
-  //   "lcov",
-  //   "clover"
-  // ],
+  coverageReporters: [
+    "json-summary",
+     "json",
+     "text",
+     "lcov",
+     "clover"
+  ],
 
 
   // A path to a custom dependency extractor
