@@ -4,7 +4,7 @@ name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["master"]
+    branches: ["master", "second-dz-add-react-components-to-calculator"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,9 +22,21 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+
+  test:
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v3
+     - uses: actions/setup-node@v3
+     - name: Install
+       run: npm install
+     - name: Test and Coverage
+       run: npm run coverage
+
   # Build job
   build:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -33,7 +45,7 @@ jobs:
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
-          source: ./
+          source: ./docs
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
@@ -49,3 +61,22 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+
+  badge:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      # Your original steps
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Install
+        run: npm install
+      - name: Test and Coverage
+        run: npm run coverage
+
+      # Add this
+      - name: Update Coverage Badge
+        # GitHub actions: default branch variable
+        # https://stackoverflow.com/questions/64781462/github-actions-default-branch-variable
+        # if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        uses: we-cli/coverage-badge-action@main
