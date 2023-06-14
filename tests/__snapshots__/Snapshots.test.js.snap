@@ -1,6 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Calculator snapshot renders 1`] = `
+exports[`Snapshot renders Button 1`] = `
+<button
+  onClick={[Function]}
+  type="button"
+>
+  0
+</button>
+`;
+
+exports[`Snapshot renders Calculator 1`] = `
 <div>
   <div
     className="buttons-row"
@@ -69,7 +78,7 @@ exports[`Calculator snapshot renders 1`] = `
     </button>
   </div>
   <p>
-    1
+    empty
   </p>
 </div>
 `;
