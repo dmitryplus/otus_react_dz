@@ -1,7 +1,11 @@
 import React from 'react';
 import { Button } from './Button';
 
-export const Calculator = () => {
+interface CalculatorProps {
+    result: string;
+}
+
+export const Calculator = ({ result }: CalculatorProps) => {
     return (
         <div>
             <div className='buttons-row'>
@@ -19,6 +23,7 @@ export const Calculator = () => {
                 <Button label={'2'} />
                 <Button label={'3'} />
             </div>
+            <p>{result}</p>
         </div>
     );
 };
