@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { CalculatorAsClassWithState } from '@/Components/CalculatorAsClassWithState';
+import { ComponentWithState } from '@/Components/ComponentWithState';
+import { Calculator } from '@/Components/Calculator';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <CalculatorAsClassWithState result='empty string' />
+        <ComponentWithState />
     </React.StrictMode>
 );

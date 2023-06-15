@@ -1,5 +1,6 @@
 import React, { Component, ReactHTMLElement } from 'react';
 import { Button } from './Button';
+import { Calculator } from './Calculator';
 
 type CalcProps = {
     value: unknown,
@@ -9,32 +10,83 @@ type CalcProps = {
 type CalcState = {
     test: boolean,
     error: Error | null,
+    counter: number,
 };
 
 const initialState: CalcState = {
     test: true,
     error: null,
+    counter: 0
 };
 
-export class ComponentWithState extends Component<
-    CalcProps,
-    CalcState
-> {
+export class ComponentWithState extends Component<CalcProps, CalcState> {
+
+    // eslint-disable-next-line prettier/prettier
+    private increaseTimer: NodeJS.Timeout | null;
+
     constructor(props: CalcProps) {
         super(props);
 
         this.state = initialState;
+
+        this.createIncreaseTimer = this.createIncreaseTimer.bind(this);
+        this.increaseStateCounter = this.increaseStateCounter.bind(this);
+        this.removeStateCounter = this.removeStateCounter.bind(this);
+        this.isTimerRunning = this.isTimerRunning.bind(this);
+
+        this.increaseTimer = null;
+    }
+
+    isTimerRunning(): boolean | undefined {
+        return Boolean(this.state.counter);
+    }
+
+    createIncreaseTimer() {
+        if (this.increaseTimer === null) {
+            this.increaseTimer = setInterval(this.increaseStateCounter, 500);
+        }
+    }
+
+    increaseStateCounter(): void {
+        this.setState((previosState) => ({
+            counter: previosState.counter + 1
+        }));
+    }
+
+    removeStateCounter(): void {
+        if (this.increaseTimer !== null) {
+            clearInterval(this.increaseTimer);
+            this.setState(() => initialState);
+        }
+    }
+
+    shouldComponentUpdate(nextProps: Readonly<CalcProps>, nextState: Readonly<CalcState>): boolean {
+        return nextState.counter !== 5;
     }
 
     componentDidUpdate(
         prevProps: CalcProps,
         prevState: CalcState,
         snapshot: unknown
-    ) {
-        console.log('componentDidUpdate', { prevProps, prevState, snapshot });
+    ): void {
+
+        if (this.increaseTimer !== null && this.state.counter > 10) {
+            this.removeStateCounter();
+        }
+
+        //console.log('componentDidUpdate', { prevProps, prevState, snapshot });
     }
 
     render() {
-        return (<></>);
+        return (
+            <>
+                <h3>Component with state</h3>
+                <p>{this.state.counter}</p>
+                <button onClick={this.createIncreaseTimer} disabled={this.isTimerRunning()}>Start timer</button>
+
+                <h2>Old Calculator</h2>
+                <Calculator result='empty string' />
+            </>
+        );
     }
 }

@@ -23,7 +23,7 @@ export const Calculator = ({ result }: CalculatorProps) => {
                 <Button label={'2'} />
                 <Button label={'3'} />
             </div>
-            <p data-testid='calculator-result'>{result}</p>
+            <h5 data-testid='calculator-result'>{result}</h5>
         </div>
     );
 };
