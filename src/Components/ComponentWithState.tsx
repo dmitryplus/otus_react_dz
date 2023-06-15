@@ -11,12 +11,14 @@ type CalcState = {
     test: boolean,
     error: Error | null,
     counter: number,
+    title: string
 };
 
 const initialState: CalcState = {
     test: true,
     error: null,
-    counter: 0
+    counter: 1,
+    title: ''
 };
 
 export class ComponentWithState extends Component<CalcProps, CalcState> {
@@ -38,7 +40,7 @@ export class ComponentWithState extends Component<CalcProps, CalcState> {
     }
 
     isTimerRunning(): boolean | undefined {
-        return Boolean(this.state.counter);
+        return Boolean(this.state.counter - 1);
     }
 
     createIncreaseTimer() {
@@ -56,9 +58,19 @@ export class ComponentWithState extends Component<CalcProps, CalcState> {
     removeStateCounter(): void {
         if (this.increaseTimer !== null) {
             clearInterval(this.increaseTimer);
+
+            this.increaseTimer = null;
+
             this.setState(() => initialState);
         }
     }
+
+    componentDidMount(): void {
+        fetch(`https://jsonplaceholder.typicode.com/todos/${this.state.counter}`)
+            .then((response) => response.json())
+            .then((data) => this.setState({ title: data.title }));
+    }
+
 
     shouldComponentUpdate(nextProps: Readonly<CalcProps>, nextState: Readonly<CalcState>): boolean {
         return nextState.counter !== 5;
@@ -82,6 +94,7 @@ export class ComponentWithState extends Component<CalcProps, CalcState> {
             <>
                 <h3>Component with state</h3>
                 <p>{this.state.counter}</p>
+                <p>{this.state.title}</p>
                 <button onClick={this.createIncreaseTimer} disabled={this.isTimerRunning()}>Start timer</button>
 
                 <h2>Old Calculator</h2>
