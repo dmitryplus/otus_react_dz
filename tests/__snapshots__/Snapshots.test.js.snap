@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot renders Button 1`] = `
+<button
+  onClick={[Function]}
+  type="button"
+>
+  0
+</button>
+`;
+
+exports[`Snapshot renders Calculator 1`] = `
+<div>
+  <div
+    className="buttons-row"
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      7
+    </button>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      8
+    </button>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      9
+    </button>
+  </div>
+  <div
+    className="buttons-row"
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      4
+    </button>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      5
+    </button>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      6
+    </button>
+  </div>
+  <div
+    className="buttons-row"
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      1
+    </button>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      2
+    </button>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      3
+    </button>
+  </div>
+  <p
+    data-testid="calculator-result"
+  >
+    empty
+  </p>
+</div>
+`;

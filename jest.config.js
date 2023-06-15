@@ -23,7 +23,7 @@ module.exports = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: "docs/coverage",
   coverageThreshold: {
     global: {
       branches: 80,
@@ -41,12 +41,13 @@ module.exports = {
   //coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
-  // coverageReporters: [
-  //   "json",
-  //   "text",
-  //   "lcov",
-  //   "clover"
-  // ],
+  coverageReporters: [
+    "json-summary",
+     "json",
+     "text",
+     "lcov",
+     "clover"
+  ],
 
 
   // A path to a custom dependency extractor
@@ -149,9 +150,9 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-node",
+    testEnvironment: 'jsdom'
 
-  // Options that will be passed to the testEnvironment
+    // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
 
   // Adds a location field to test results

@@ -5,6 +5,6 @@ import { CalculatorAsClassWithState } from '@/Components/CalculatorAsClassWithSt
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <CalculatorAsClassWithState />
+        <CalculatorAsClassWithState result='empty string' />
     </React.StrictMode>
 );

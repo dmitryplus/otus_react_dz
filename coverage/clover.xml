@@ -1,6 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1681838740160" clover="3.2.0">
-  <project timestamp="1681838740160" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1686683716698" clover="3.2.0">
+  <project timestamp="1686683716698" name="All files">
+    <metrics statements="116" coveredstatements="113" conditionals="67" coveredconditionals="64" methods="20" coveredmethods="19" elements="203" coveredelements="196" complexity="0" loc="116" ncloc="116" packages="2" files="7" classes="7"/>
+    <package name="src">
+      <metrics statements="106" coveredstatements="103" conditionals="65" coveredconditionals="62" methods="16" coveredmethods="15"/>
+      <file name="MakeAction.ts" path="/home/dmitry/sites/react_course/first_dz/src/MakeAction.ts">
+        <metrics statements="18" coveredstatements="18" conditionals="7" coveredconditionals="7" methods="6" coveredmethods="6"/>
+        <line num="7" count="11" type="stmt"/>
+        <line num="8" count="11" type="stmt"/>
+        <line num="10" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="14" count="5" type="cond" truecount="5" falsecount="0"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="28" count="11" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="31" count="11" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="34" count="11" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="37" count="11" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+      </file>
+      <file name="Parser.ts" path="/home/dmitry/sites/react_course/first_dz/src/Parser.ts">
+        <metrics statements="77" coveredstatements="74" conditionals="48" coveredconditionals="45" methods="9" coveredmethods="8"/>
+        <line num="9" count="23" type="stmt"/>
+        <line num="11" count="23" type="stmt"/>
+        <line num="13" count="23" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="8" type="stmt"/>
+        <line num="17" count="15" type="stmt"/>
+        <line num="20" count="23" type="cond" truecount="1" falsecount="0"/>
+        <line num="21" count="39" type="stmt"/>
+        <line num="22" count="39" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="15" type="stmt"/>
+        <line num="26" count="39" type="cond" truecount="3" falsecount="1"/>
+        <line num="27" count="10" type="stmt"/>
+        <line num="29" count="9" type="stmt"/>
+        <line num="30" count="85" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="7" type="stmt"/>
+        <line num="34" count="9" type="stmt"/>
+        <line num="35" count="75" type="cond" truecount="2" falsecount="0"/>
+        <line num="36" count="13" type="stmt"/>
+        <line num="41" count="38" type="cond" truecount="4" falsecount="0"/>
+        <line num="42" count="29" type="stmt"/>
+        <line num="46" count="29" type="cond" truecount="3" falsecount="1"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="29" type="stmt"/>
+        <line num="55" count="29" type="stmt"/>
+        <line num="61" count="9" type="stmt"/>
+        <line num="64" count="23" type="stmt"/>
+        <line num="65" count="20" type="stmt"/>
+        <line num="67" count="20" type="stmt"/>
+        <line num="69" count="20" type="stmt"/>
+        <line num="73" count="20" type="stmt"/>
+        <line num="74" count="20" type="stmt"/>
+        <line num="75" count="20" type="stmt"/>
+        <line num="77" count="20" type="stmt"/>
+        <line num="78" count="52" type="cond" truecount="2" falsecount="0"/>
+        <line num="79" count="6" type="stmt"/>
+        <line num="80" count="6" type="stmt"/>
+        <line num="84" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="85" count="6" type="stmt"/>
+        <line num="87" count="6" type="stmt"/>
+        <line num="90" count="20" type="stmt"/>
+        <line num="94" count="20" type="stmt"/>
+        <line num="96" count="20" type="stmt"/>
+        <line num="97" count="56" type="cond" truecount="2" falsecount="0"/>
+        <line num="98" count="7" type="stmt"/>
+        <line num="99" count="7" type="stmt"/>
+        <line num="103" count="20" type="stmt"/>
+        <line num="108" count="20" type="stmt"/>
+        <line num="113" count="20" type="stmt"/>
+        <line num="121" count="20" type="stmt"/>
+        <line num="128" count="23" type="stmt"/>
+        <line num="132" count="10" type="stmt"/>
+        <line num="134" count="10" type="stmt"/>
+        <line num="139" count="10" type="stmt"/>
+        <line num="144" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="145" count="1" type="stmt"/>
+        <line num="148" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="149" count="5" type="stmt"/>
+        <line num="152" count="4" type="stmt"/>
+        <line num="154" count="4" type="stmt"/>
+        <line num="156" count="4" type="stmt"/>
+        <line num="157" count="55" type="cond" truecount="2" falsecount="0"/>
+        <line num="158" count="37" type="cond" truecount="2" falsecount="0"/>
+        <line num="159" count="5" type="stmt"/>
+        <line num="162" count="37" type="cond" truecount="4" falsecount="0"/>
+        <line num="163" count="4" type="stmt"/>
+        <line num="168" count="4" type="stmt"/>
+        <line num="170" count="4" type="stmt"/>
+        <line num="177" count="4" type="stmt"/>
+        <line num="182" count="4" type="stmt"/>
+        <line num="185" count="23" type="stmt"/>
+        <line num="186" count="0" type="stmt"/>
+        <line num="187" count="0" type="stmt"/>
+        <line num="190" count="23" type="stmt"/>
+        <line num="194" count="20" type="stmt"/>
+        <line num="195" count="20" type="stmt"/>
+        <line num="196" count="20" type="stmt"/>
+        <line num="199" count="13" type="stmt"/>
+        <line num="202" count="20" type="stmt"/>
+      </file>
+      <file name="Validator.ts" path="/home/dmitry/sites/react_course/first_dz/src/Validator.ts">
+        <metrics statements="11" coveredstatements="11" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
+        <line num="2" count="23" type="stmt"/>
+        <line num="4" count="23" type="stmt"/>
+        <line num="5" count="23" type="stmt"/>
+        <line num="7" count="23" type="stmt"/>
+        <line num="8" count="23" type="cond" truecount="4" falsecount="0"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="12" count="21" type="cond" truecount="4" falsecount="0"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="16" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="20" count="15" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.MathOperators">
+      <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+      <file name="Addition.ts" path="/home/dmitry/sites/react_course/first_dz/src/MathOperators/Addition.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+      </file>
+      <file name="Division.ts" path="/home/dmitry/sites/react_course/first_dz/src/MathOperators/Division.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+      </file>
+      <file name="Multiplication.ts" path="/home/dmitry/sites/react_course/first_dz/src/MathOperators/Multiplication.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
+      </file>
+      <file name="Subtraction.ts" path="/home/dmitry/sites/react_course/first_dz/src/MathOperators/Subtraction.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>
