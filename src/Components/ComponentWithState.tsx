@@ -35,6 +35,7 @@ export class ComponentWithState extends Component<CalcProps, CalcState> {
         this.increaseStateCounter = this.increaseStateCounter.bind(this);
         this.removeStateCounter = this.removeStateCounter.bind(this);
         this.isTimerRunning = this.isTimerRunning.bind(this);
+        this.removeTimer = this.removeTimer.bind(this);
 
         this.increaseTimer = null;
     }
@@ -56,16 +57,26 @@ export class ComponentWithState extends Component<CalcProps, CalcState> {
     }
 
     removeStateCounter(): void {
+        this.removeTimer();
+        this.setState(() => initialState);
+    }
+
+    removeTimer(): void {
         if (this.increaseTimer !== null) {
             clearInterval(this.increaseTimer);
-
             this.increaseTimer = null;
-
-            this.setState(() => initialState);
         }
     }
 
+    handleClick = (e: MouseEvent) => {
+        console.log('mouse click');
+    }
+
+
     componentDidMount(): void {
+
+        window.addEventListener('click', this.handleClick);
+
         fetch(`https://jsonplaceholder.typicode.com/todos/${this.state.counter}`)
             .then((response) => response.json())
             .then((data) => this.setState({ title: data.title }));
@@ -87,6 +98,12 @@ export class ComponentWithState extends Component<CalcProps, CalcState> {
         }
 
         //console.log('componentDidUpdate', { prevProps, prevState, snapshot });
+    }
+
+    componentWillUnmout() {
+        this.removeTimer();
+
+        window.removeEventListener('click', this.handleClick);
     }
 
     render() {
