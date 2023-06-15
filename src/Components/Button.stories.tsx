@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from './Button';
 
 export default {
-    title: 'Calculator/Button',
+    title: 'ComponentWithState/Calculator/Button',
     component: Button,
 // eslint-disable-next-line prettier/prettier
 } as ComponentMeta<typeof Button>;
