@@ -93,6 +93,10 @@ export class ComponentWithState extends Component<CalcProps, CalcState> {
         snapshot: unknown
     ): void {
 
+        if (this.state.counter === 9) {
+            throw new Error('запускаем ошибку');
+        }
+
         if (this.increaseTimer !== null && this.state.counter > 10) {
             this.removeStateCounter();
         }
