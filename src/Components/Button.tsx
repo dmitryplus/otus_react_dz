@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { BlockFontSize } from '../types/fontSize';
 
 interface ButtonProps {
-    label: string;
+    label: BlockFontSize;
+    onChildFontSizeChange: unknown;
 }
 
-export const Button = ({ label }: ButtonProps) => {
-    if (label.length !== 1) {
-        return <></>;
-    }
+export const Button = ({ label, onChildFontSizeChange }: ButtonProps) => {
+
+    const childHandleInputChange = useCallback(
+        () => onChildFontSizeChange(label),
+        [onChildFontSizeChange, label]
+    );
 
     return (
-        <button type='button' onClick={() => alert(label)}>
+        <button type='button' onClick={childHandleInputChange}>
             {label}
         </button>
     );
