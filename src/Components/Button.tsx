@@ -1,13 +1,15 @@
-import React, { useCallback } from 'react';
+import React, { Dispatch, SetStateAction, useCallback } from 'react';
 import { BlockFontSize } from '../types/fontSize';
 
 interface ButtonProps {
     label: BlockFontSize;
-    onChildFontSizeChange: unknown;
+    onChildFontSizeChange: Dispatch<SetStateAction<BlockFontSize>>;
 }
 
-export const Button = ({ label, onChildFontSizeChange }: ButtonProps) => {
-
+export const Button: React.FC<ButtonProps> = ({
+    label,
+    onChildFontSizeChange,
+}: ButtonProps) => {
     const childHandleInputChange = useCallback(
         () => onChildFontSizeChange(label),
         [onChildFontSizeChange, label]

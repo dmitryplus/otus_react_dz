@@ -1,5 +1,4 @@
 export type BlockFontSize =
-    | 0
     | 1
     | 1.1
     | 1.2

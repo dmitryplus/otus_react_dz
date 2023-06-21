@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './styles';
+import * as Styles from './styles';
 import { BlockFontSize } from '../types/fontSize';
 
 interface ContainerProps {
@@ -8,10 +8,10 @@ interface ContainerProps {
 
 export const Container = ({ fontSize }: ContainerProps) => {
     return (
-        <S.Container>
-            <S.Block fontSize={fontSize}>First block</S.Block>
-            <S.Block fontSize={fontSize}>Second block</S.Block>
-            <S.Block fontSize={fontSize}>Third block</S.Block>
-        </S.Container>
+        <Styles.Container>
+            <Styles.Block fontSize={fontSize}>First block</Styles.Block>
+            <Styles.Block fontSize={fontSize}>Second block</Styles.Block>
+            <Styles.Block fontSize={fontSize}>Third block</Styles.Block>
+        </Styles.Container>
     );
 };
