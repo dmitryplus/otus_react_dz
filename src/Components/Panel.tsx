@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from './Button';
 import { BlockFontSize } from '../types/fontSize';
 
-export const Panel = ({ onFontSizeChange }) => {
+export const Panel = ({ onFontSizeChange}) => {
     const [childFontSize, setChildFontSize] = useState<BlockFontSize>(1);
 
     const needFontSizes: BlockFontSize[] = [

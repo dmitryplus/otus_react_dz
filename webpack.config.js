@@ -59,10 +59,18 @@ module.exports = {
             patterns: [
                {
                 from: createPath('src/favicon.ico'),
-                to: createPath('dist'),
+                to: createPath('docs'),
             },
             ],
            }),
+		new CopyPlugin({
+			patterns: [
+				{
+					from: createPath('src/data'),
+					to: createPath('docs/data'),
+				},
+			],
+		}),
         new CleanWebpackPlugin(),
 	]
 }
