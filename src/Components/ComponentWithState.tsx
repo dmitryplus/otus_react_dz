@@ -1,34 +1,21 @@
 import React, { Component, ReactHTMLElement, useEffect, useState } from 'react';
 import { Container } from './Container';
-import { BlockFontSize } from '../types/fontSize';
+import { BlockFontSize, Xhprof } from '../Types';
 import { Panel } from './Panel';
-
-import { unserialize } from 'locutus/php/var';
+import { LoadXhprofFromFolder } from '../Services';
 
 export function ComponentWithState() {
     const [fontSize, setFontSize] = useState<BlockFontSize>(1);
     const [xhprof, setXhprof] = useState({});
 
     useEffect(() => {
-
-        fetch('./data/xhprof_foo.xhprof')
-            .then((response) => response.text())
-            .then((response) => {
-                setXhprof(unserialize(response));
-            })
-            .catch((err) => console.log(err));
+        LoadXhprofFromFolder('xhprof_foo.xhprof', setXhprof);
     }, []);
-
-    useEffect(() => {
-        // for (const key of Object.keys(xhprof)) {
-        //     console.log(key, xhprof[key]);
-        // }
-    }, [xhprof]);
 
     return (
         <>
+            <Panel onFontSizeChange={setFontSize} />
             <Container fontSize={fontSize} xhprof={xhprof} />
-            {/*<Panel onFontSizeChange={setFontSize} />*/}
         </>
     );
 }

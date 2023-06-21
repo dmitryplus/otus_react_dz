@@ -6,7 +6,8 @@ import React, {
     SetStateAction,
 } from 'react';
 import { Button } from './Button';
-import { BlockFontSize } from '../types/fontSize';
+import { BlockFontSize } from '../Types';
+import * as Styles from './styles';
 
 const needFontSizes: BlockFontSize[] = [
     1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2,
@@ -20,7 +21,7 @@ export const Panel: React.FC<PanelProps> = ({
     onFontSizeChange,
 }: PanelProps) => {
     return (
-        <div className='buttons-row'>
+        <Styles.Toolbox>
             {needFontSizes.map((fontSize) => (
                 <Button
                     key={fontSize.toString()}
@@ -28,6 +29,6 @@ export const Panel: React.FC<PanelProps> = ({
                     onChildFontSizeChange={onFontSizeChange}
                 />
             ))}
-        </div>
+        </Styles.Toolbox>
     );
 };

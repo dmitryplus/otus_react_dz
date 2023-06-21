@@ -66,8 +66,8 @@ module.exports = {
 		new CopyPlugin({
 			patterns: [
 				{
-					from: createPath('src/data'),
-					to: createPath('docs/data'),
+					from: createPath('src/Data'),
+					to: createPath('docs/Data'),
 				},
 			],
 		}),

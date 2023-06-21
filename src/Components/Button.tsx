@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useCallback } from 'react';
-import { BlockFontSize } from '../types/fontSize';
+import { BlockFontSize } from '../Types/fontSize';
 
 interface ButtonProps {
     label: BlockFontSize;
