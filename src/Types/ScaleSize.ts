@@ -1,4 +1,4 @@
-export type BlockFontSize =
+export type ScaleSize =
     | 1
     | 1.1
     | 1.2

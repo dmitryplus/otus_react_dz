@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BlockFontSize } from '../Types';
+import { ScaleSize } from '../Types';
 
 export const Container = styled.div`
     color: #192229;
@@ -12,13 +12,17 @@ export const Container = styled.div`
 `;
 
 interface BlockProps {
-    fontSize?: BlockFontSize;
+    scaleSize?: ScaleSize;
 }
 
-export const Block =
+export const MainScreen =
     styled.div <
     BlockProps >
-    `    
+    `
+  transform: scale(${({ scaleSize = 1 }) => scaleSize});
+`;
+
+export const Block = styled.div`
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     font-weight: 300;
     line-height: 1.5;
@@ -27,7 +31,7 @@ export const Block =
     background-color: #fff;
     margin: 1em;
     padding: 1.125em 1.5em;
-    font-size: ${({ fontSize = 1.2 }) => fontSize}em;
+    font-size: 1.2em;
     border-radius: 1rem;
     box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3),
         0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);

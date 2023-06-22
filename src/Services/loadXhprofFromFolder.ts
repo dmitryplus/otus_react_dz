@@ -1,5 +1,5 @@
 import { unserialize } from 'locutus/php/var';
-import { BlockFontSize, Xhprof } from '../Types';
+import { Xhprof } from '../Types';
 import { Dispatch, SetStateAction } from 'react';
 
 const rowLimit: number = 100;

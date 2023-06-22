@@ -1,2 +1,2 @@
-export * from './fontSize';
+export * from './ScaleSize';
 export * from './xhprof';

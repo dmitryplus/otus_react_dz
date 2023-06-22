@@ -1,20 +1,18 @@
 import React from 'react';
 import * as Styles from './styles';
-import { BlockFontSize, Xhprof } from '../Types';
+import { Xhprof } from '../Types';
 
 interface ContainerProps {
-    fontSize: BlockFontSize;
     xhprof: Xhprof;
 }
 
 export const Container: React.FC<ContainerProps> = ({
-    fontSize,
     xhprof,
 }: ContainerProps) => {
     return (
         <Styles.Container>
             {Object.keys(xhprof).map((key, index) => (
-                <Styles.Block key={index.toString()} fontSize={fontSize}>
+                <Styles.Block key={index.toString()}>
                     <p>{key}</p>
                     <p>
                         <span>ct: {xhprof[key].ct}</span>&nbsp;
