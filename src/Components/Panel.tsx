@@ -1,10 +1,4 @@
-import React, {
-    useCallback,
-    useEffect,
-    useState,
-    Dispatch,
-    SetStateAction,
-} from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Button } from './Button';
 import { ScaleSize } from '../Types';
 import * as Styles from './styles';
