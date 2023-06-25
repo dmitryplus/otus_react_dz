@@ -4,25 +4,23 @@ import { useUserContext } from '../UserProvider';
 import { Logout } from '../Components/Logout';
 
 export const Login: FC = () => {
-
     const [UserName] = useUserContext();
 
-
-    if (UserName) {
-
-        return (
-            <>
-                <div>Выход</div>
-                <Logout />
-            </>
-        );
-
-    }
-
-    return (
+    let returnComponents = (
         <>
             <div>Авторизация</div>
             <Authorization />
         </>
     );
+
+    if (UserName) {
+        returnComponents = (
+            <>
+                <div>Выход</div>
+                <Logout />
+            </>
+        );
+    }
+
+    return returnComponents;
 };
