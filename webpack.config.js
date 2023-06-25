@@ -3,8 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-
-
 const createPath = (dirName) => path.resolve(__dirname, dirName);
 
 module.exports = {
@@ -22,6 +20,9 @@ module.exports = {
         }
     },
 	devtool: "source-map",
+	devServer: {
+		historyApiFallback: true,
+	},
 	module: {
 		rules: [
 			{
