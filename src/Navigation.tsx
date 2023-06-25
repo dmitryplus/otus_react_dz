@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Auth } from './Components/Auth';
+import { Auth } from './Pages/Auth';
 import { Main } from './Pages/Main';
 import { Catalog } from './Pages/Catalog';
 import { ComponentWithState } from './Components/ComponentWithState';
