@@ -2,9 +2,7 @@ import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserName, useUserContext } from '../UserProvider';
 
-
 export const Start: FC = () => {
-
     const [UserName] = useUserContext();
 
     const toMainPage = <NavLink to='/'> Главная страница </NavLink>;
