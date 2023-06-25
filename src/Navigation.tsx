@@ -4,30 +4,36 @@ import { Login } from './Pages/Login';
 import { Main } from './Pages/Main';
 import { Catalog } from './Pages/Catalog';
 import { ComponentWithState } from './Components/ComponentWithState';
-import { NotFound } from './Pages/NotFound';
-import { ProtectedRoutes } from './ProtectedRoutes';
+import { useUserContext } from './UserProvider';
 
 interface NavigationProps {
     children: ReactNode;
 }
 
-const authElements = (
-    <ProtectedRoutes>
-        <Routes>
-            <Route index element={<Main />} />
-            <Route path='/catalog' element={<Catalog />} />
-            <Route path='/xhprof' element={<ComponentWithState />} />
-            <Route path='*' element={<NotFound />} />
-        </Routes>
-    </ProtectedRoutes>
-);
+export const Navigation: FC<NavigationProps> = ({ children }) => {
+    const [UserName] = useUserContext();
 
-export const Navigation: FC<NavigationProps> = ({ children }) => (
-    <BrowserRouter>
-        {children}
-        <Routes>
-            <Route path='/auth' element={<Login />} />
-            <Route path='*' element={authElements} />
-        </Routes>
-    </BrowserRouter>
-);
+
+    let privatePages = <></>;
+
+
+    if (UserName) {
+        privatePages = (
+            <Routes>
+                <Route index element={<Main />} />
+                <Route path='/catalog' element={<Catalog />} />
+                <Route path='/xhprof' element={<ComponentWithState />} />
+            </Routes>
+        );
+    }
+
+    return (
+        <BrowserRouter>
+            {children}
+            {privatePages}
+            <Routes>
+                <Route path='/auth' element={<Login />} />
+            </Routes>
+        </BrowserRouter>
+    );
+};
