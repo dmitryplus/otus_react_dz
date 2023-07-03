@@ -14,7 +14,7 @@ export type TokenProviderProps = {
 export type UserName = string;
 
 export type UserCallbacks = {
-    login: () => void,
+    login: (UserName: UserName) => void,
     logout: () => void,
 };
 
@@ -37,12 +37,13 @@ export const UserProvider: FC<TokenProviderProps> = ({ children }) => {
 
     const callbacks = useMemo(
         () => ({
-            login: (inputUserName: string) => {
+            login: (inputUserName: UserName) => {
                 setUserName(inputUserName);
             },
             logout: () => {
                 setUserName(null);
-            } }),
+            },
+        }),
         []
     );
 

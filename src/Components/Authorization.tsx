@@ -16,9 +16,16 @@ export const Authorization: FC = () => {
     return (
         <>
             <label>
-                Имя пользователя: <input value={inputName} onChange={e => setInputName(e.target.value)} />
+                Имя пользователя:{' '}
+                <input
+                    data-testid='inputName'
+                    value={inputName}
+                    onChange={(e) => setInputName(e.target.value)}
+                />
             </label>
-            <button onClick={onClick}>Вход</button>
+            <button data-testid='enterButton' onClick={onClick}>
+                Вход
+            </button>
         </>
     );
 };

@@ -12,5 +12,5 @@ export const Logout: FC = () => {
         navigate('/');
     };
 
-    return <button onClick={onClick}>Выйти</button>;
+    return <button data-testid='exitButton' onClick={onClick}>Выйти</button>;
 };
