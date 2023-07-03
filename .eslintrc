@@ -11,7 +11,8 @@
         "parser": "flow",
         "printWidth": 80,
         "tabWidth": 4,
-        "useTabs": false
+        "useTabs": false,
+        "jsxSingleQuote": true
       }
     ],
     "@typescript-eslint/quotes": [
@@ -23,9 +24,17 @@
       }
     ],
     "@typescript-eslint/no-inferrable-types": 0,
-
-    "indent": ["error", 4, {"SwitchCase": 1}]
-   
+    "indent": [
+      "error",
+      4,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ]
   },
   "parserOptions": {
     "sourceType": "module",
