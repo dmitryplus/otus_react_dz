@@ -2,12 +2,13 @@ import { unserialize } from 'locutus/php/var';
 import { Xhprof } from '../Types';
 import { Dispatch, SetStateAction } from 'react';
 
-const rowLimit: number = 100;
+const DEFAULT_ROW_LIMIT: number = 100;
 const folder: string = './Data/';
 
 export const LoadXhprofFromFolder = (
     fileName: string,
-    saveMethod: Dispatch<SetStateAction<Xhprof>>
+    saveMethod: Dispatch<SetStateAction<Xhprof>>,
+    rowLimit: number = DEFAULT_ROW_LIMIT
 ): void => {
     fetch(folder + fileName)
         .then((response) => response.text())

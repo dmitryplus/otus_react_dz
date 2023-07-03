@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Button } from './Button';
+import { ChangeScaleButton } from './ChangeScaleButton';
 import { ScaleSize } from '../Types';
 import * as Styles from './styles';
 
@@ -17,7 +17,7 @@ export const Panel: React.FC<PanelProps> = ({
     return (
         <Styles.Toolbox>
             {needFontSizes.map((fontSize) => (
-                <Button
+                <ChangeScaleButton
                     key={fontSize.toString()}
                     label={fontSize}
                     onChildScaleSizeChange={onScaleSizeChange}
