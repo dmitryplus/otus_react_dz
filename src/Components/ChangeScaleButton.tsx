@@ -6,7 +6,7 @@ interface ButtonProps {
     onChildScaleSizeChange: Dispatch<SetStateAction<ScaleSize>>;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const ChangeScaleButton: React.FC<ButtonProps> = ({
     label,
     onChildScaleSizeChange,
 }: ButtonProps) => {

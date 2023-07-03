@@ -7,17 +7,17 @@ import * as Styles from './styles';
 
 export function ComponentWithState() {
     const [scaleSize, setScaleSize] = useState<ScaleSize>(1);
-    const [xhprof, setXhprof] = useState({});
+    const [xhprofData, setXhprofData] = useState({});
 
     useEffect(() => {
-        LoadXhprofFromFolder('xhprof_foo.xhprof', setXhprof);
+        LoadXhprofFromFolder('xhprof_foo.xhprof', setXhprofData);
     }, []);
 
     return (
         <>
             <Panel onScaleSizeChange={setScaleSize} />
             <Styles.MainScreen scaleSize={scaleSize}>
-                <Container xhprof={xhprof} />
+                <Container xhprof={xhprofData} />
             </Styles.MainScreen>
         </>
     );
