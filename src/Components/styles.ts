@@ -2,24 +2,31 @@ import styled from 'styled-components';
 import { ScaleSize } from '../Types';
 
 export const Container = styled.div`
-    color: #192229;
-    background: linear-gradient(135deg, #f4f2f3, #bfc6d0);
-    height: 100%;
-    //display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 2rem;
+  height: 600px;
+  width: 100%;
+  border:2px solid #000;
+  overflow: scroll;
+ 
 `;
+export const SVG = styled.svg`
+position: absolute;
+top:0;
+bottom: 0;
+left: 0;
+right: 0;
+
+margin: auto;
+  `;
 
 interface BlockProps {
-    scaleSize?: ScaleSize;
+    scalesize?: ScaleSize;
 }
 
 export const MainScreen =
     styled.div <
     BlockProps >
     `
-  transform: scale(${({ scaleSize = 1 }) => scaleSize});
+  transform: scale(${({ scalesize = 1 }) => scalesize});
 `;
 
 export const Block = styled.div`

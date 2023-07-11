@@ -2,7 +2,7 @@ import { unserialize } from 'locutus/php/var';
 import { Xhprof } from '../Types';
 import { Dispatch, SetStateAction } from 'react';
 
-const DEFAULT_ROW_LIMIT: number = 100;
+const DEFAULT_ROW_LIMIT: number = 1000;
 const folder: string = './Data/';
 
 export const LoadXhprofFromFolder = (
@@ -20,7 +20,7 @@ export const LoadXhprofFromFolder = (
             let counter = 1;
             for (const key of Object.keys(originalData)) {
                 if (counter > rowLimit) {
-                    break;
+                   // break;
                 }
 
                 xhprofData[key] = originalData[key];

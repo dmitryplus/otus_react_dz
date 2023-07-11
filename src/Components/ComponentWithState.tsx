@@ -16,7 +16,7 @@ export function ComponentWithState() {
     return (
         <>
             <Panel onScaleSizeChange={setScaleSize} />
-            <Styles.MainScreen scaleSize={scaleSize}>
+            <Styles.MainScreen>
                 <Container xhprof={xhprofData} />
             </Styles.MainScreen>
         </>
