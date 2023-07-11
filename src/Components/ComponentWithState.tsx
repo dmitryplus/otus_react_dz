@@ -10,7 +10,7 @@ export function ComponentWithState() {
     const [xhprofData, setXhprofData] = useState({});
 
     useEffect(() => {
-        LoadXhprofFromFolder('xhprof_foo.xhprof', setXhprofData);
+        LoadXhprofFromFolder('64428859e7175.xhprof_foo.xhprof', setXhprofData);
     }, []);
 
     return (
