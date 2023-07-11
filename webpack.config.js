@@ -72,6 +72,14 @@ module.exports = {
 				},
 			],
 		}),
+		new CopyPlugin({
+			patterns: [
+				{
+					from: createPath('src/files-list.json'),
+					to: createPath('docs'),
+				},
+			],
+		}),
         new CleanWebpackPlugin(),
 	]
 }
