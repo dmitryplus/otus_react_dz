@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { GetFilesList, LoadXhprofFromFolder } from '../Services';
+import { GetFilesList, LoadXhprofFromFolder, xhprofGenerateDotScript } from '../Services';
+import { Xhprof } from '../Types';
 
 
 export const updateFilesList = createAsyncThunk(
@@ -18,21 +19,28 @@ export const loadXhprofData = createAsyncThunk(
     }
 );
 
-
 interface FilesState {
     files: [],
-    data: string | null
+    data: Xhprof | null,
+    dot: string | null,
 }
 
 const initialState = {
     files: [],
-    data: null
+    data: null,
+    dot: null
 } as FilesState;
 
 export const filesSlice = createSlice({
     name: 'files',
     initialState,
-    reducers: {},
+    reducers: {
+        createDotFromXhprof: (state = initialState) => {
+            if (state.data != null && state.dot == null) {
+                state.dot = xhprofGenerateDotScript(state.data);
+            }
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(updateFilesList.fulfilled, (state, action) => {
             state.files = action.payload;
@@ -42,4 +50,6 @@ export const filesSlice = createSlice({
         });
     }
 });
+
+export const { createDotFromXhprof } = filesSlice.actions;
 

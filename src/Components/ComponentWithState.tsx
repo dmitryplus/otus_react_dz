@@ -7,24 +7,36 @@ import * as Styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useLocation, useParams } from 'react-router-dom';
-import { loadXhprofData } from '../Redux/files';
+import { createDotFromXhprof, loadXhprofData } from '../Redux/files';
 
 export function ComponentWithState() {
     //const [scaleSize, setScaleSize] = useState<ScaleSize>(1);
 
-    const xhprofData = useSelector(state => state.files.data);
-    const filesList = useSelector(state => state.files.files);
+    const xhprofData = useSelector(store => store.files.data);
+    const filesList = useSelector(store => store.files.files);
+    const dotData = useSelector(store => store.files.dot);
 
     const dispatch = useDispatch<any>();
 
     const { filename } = useParams();
-
 
     useEffect(() => {
         if (filename != null && xhprofData === null && filesList.includes(filename)) {
             dispatch(loadXhprofData(filename));
         }
     }, [xhprofData]);
+
+    useEffect(() => {
+        if (xhprofData != null) {
+            dispatch(createDotFromXhprof());
+        }
+    }, [dotData, xhprofData]);
+
+    useEffect(() => {
+        if (dotData != null) {
+            console.log('dot data create');
+        }
+    }, [dotData]);
 
     return (
         <>
