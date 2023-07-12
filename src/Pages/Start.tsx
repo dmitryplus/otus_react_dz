@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilesList } from '../Redux/files';
+import {FileListElement} from '../Components/FileListElement';
 
 
 export const Start: FC = () => {
@@ -15,5 +16,9 @@ export const Start: FC = () => {
     }, [filesList]);
 
 
-    return <p>Start</p>;
+    return (
+        <>
+            <p>Список файлов:</p>
+            {filesList.map((fileName, index) => <FileListElement fileName={fileName} key={index}/>)}
+        </>);
 };
