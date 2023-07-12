@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { Navigation } from './Navigation';
 import { Start } from './Pages/Start';
-import { UserProvider } from './UserProvider';
+
+import { Provider } from 'react-redux';
+import { store } from './Redux/store';
 
 export const App: React.FC = () => {
     return (
-        <UserProvider>
-            <Navigation>
-                <Start />
-            </Navigation>
-        </UserProvider>
+        <Provider store={store}>
+            <Start />
+        </Provider>
     );
 };
