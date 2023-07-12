@@ -14,6 +14,9 @@ interface PanelProps {
 export const Panel: React.FC<PanelProps> = ({
     onScaleSizeChange,
 }: PanelProps) => {
+
+    return <></>;
+
     return (
         <Styles.Toolbox>
             {needFontSizes.map((fontSize) => (

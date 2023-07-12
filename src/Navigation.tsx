@@ -11,28 +11,26 @@ interface NavigationProps {
 }
 
 export const Navigation: FC<NavigationProps> = ({ children }) => {
-    const [UserName] = useUserContext();
-
-
-    let privatePages = <></>;
-
-
-    if (UserName) {
-        privatePages = (
-            <Routes>
-                <Route index element={<Main />} />
-                <Route path='/catalog' element={<Catalog />} />
-                <Route path='/xhprof' element={<ComponentWithState />} />
-            </Routes>
-        );
-    }
+    // const [UserName] = useUserContext();
+    //
+    //
+    // let privatePages = <></>;
+    //
+    //
+    // if (UserName) {
+    //     privatePages = (
+    //         <Routes>
+    //             <Route index element={<Main />} />
+    //             <Route path='/catalog' element={<Catalog />} />
+    //             <Route path='/xhprof' element={<ComponentWithState />} />
+    //         </Routes>
+    //     );
+    // }
 
     return (
         <BrowserRouter>
-            {children}
-            {privatePages}
             <Routes>
-                <Route path='/auth' element={<Login />} />
+                <Route path='/xhprof' element={<ComponentWithState />} />
             </Routes>
         </BrowserRouter>
     );
