@@ -1,34 +1,19 @@
-import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
-import { UserName, useUserContext } from '../UserProvider';
+import React, { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateFilesList } from '../Redux/files';
+
 
 export const Start: FC = () => {
-    const [UserName] = useUserContext();
 
-    const toMainPage = <NavLink to='/'> Главная страница </NavLink>;
+    const filesList = useSelector(state => state.files.files);
+    const dispatch = useDispatch<any>();
 
-    let returnComponents = (
-        <>
-            <div>Меню:</div>
-            {toMainPage}
-            <NavLink to='auth'> Вход </NavLink>
-        </>
-    );
+    useEffect(() => {
+        if (!filesList.length) {
+            dispatch(updateFilesList());
+        }
+    }, [filesList]);
 
-    if (UserName) {
-        returnComponents = (
-            <>
-                <p>
-                    Пользователь: <b>{UserName}</b>
-                </p>
-                <div>Меню:</div>
-                {toMainPage}
-                <NavLink to='catalog'> Каталог </NavLink>
-                <NavLink to='xhprof'> Вывод элементов </NavLink>
-                <NavLink to='auth'> Выход </NavLink>
-            </>
-        );
-    }
 
-    return returnComponents;
+    return <p>Start</p>;
 };

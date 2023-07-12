@@ -7,3 +7,4 @@ export * from './xhprofParseParentChild';
 export * from './xhprofGenerateDotScript';
 export * from './xhprofGetChildrenTable';
 export * from './xhprofBuildParentChildKey';
+export * from './getFilesList';
