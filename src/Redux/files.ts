@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { GetFilesList } from '../Services';
+import { GetFilesList, LoadXhprofFromFolder } from '../Services';
 
 
 export const updateFilesList = createAsyncThunk(
@@ -10,24 +10,35 @@ export const updateFilesList = createAsyncThunk(
     }
 );
 
+export const loadXhprofData = createAsyncThunk(
+    'files/loadXhprof',
+    async (fileName: string) => {
+        const response = await LoadXhprofFromFolder(fileName);
+        return response.data;
+    }
+);
+
 
 interface FilesState {
-    files: [];
+    files: [],
+    data: string | null
 }
 
 const initialState = {
-    files: []
+    files: [],
+    data: null
 } as FilesState;
 
 export const filesSlice = createSlice({
     name: 'files',
     initialState,
-    reducers: {
-        // standard reducer logic, with auto-generated action types per reducer
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(updateFilesList.fulfilled, (state, action) => {
             state.files = action.payload;
+        });
+        builder.addCase(loadXhprofData.fulfilled, (state, action) => {
+            state.data = action.payload;
         });
     }
 });

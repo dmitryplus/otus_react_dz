@@ -1,34 +1,26 @@
 import { unserialize } from 'locutus/php/var';
-import { Xhprof } from '../Types';
-import { Dispatch, SetStateAction } from 'react';
 
-const DEFAULT_ROW_LIMIT: number = 1000;
-const folder: string = './Data/';
+const folder: string = '../Data/';
 
-export const LoadXhprofFromFolder = (
-    fileName: string,
-    saveMethod: Dispatch<SetStateAction<Xhprof>>,
-    rowLimit: number = DEFAULT_ROW_LIMIT
-): void => {
-    fetch(folder + fileName)
-        .then((response) => response.text())
-        .then((response) => {
-            const originalData = unserialize(response);
+// export const LoadXhprofFromFolder = (
+//     fileName: string
+// ): void => {
+//     fetch(folder + fileName)
+//         .then((response) => response.text())
+//         .then((response) => {
+//             return unserialize(response);
+//         })
+//         .catch((err) => console.log(err));
+// };
 
-            const xhprofData: Xhprof = {};
+import axios from '../Hooks/axios';
 
-            let counter = 1;
-            for (const key of Object.keys(originalData)) {
-                if (counter > rowLimit) {
-                   // break;
-                }
+export const LoadXhprofFromFolder = async (fileName: string): Promise<{ data: T; status: number }> => {
+    const { data, status } = await axios.get(folder + fileName);
 
-                xhprofData[key] = originalData[key];
+    if (status !== 200) {
+        throw new Error();
+    }
 
-                counter++;
-            }
-
-            saveMethod(xhprofData);
-        })
-        .catch((err) => console.log(err));
+    return { data: unserialize(data) , status };
 };
