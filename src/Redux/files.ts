@@ -33,13 +33,15 @@ interface FilesState {
     data: Xhprof | null,
     dot: string | null,
     svg: string | null,
+    error: string | null,
 }
 
 const initialState = {
     files: [],
     data: null,
     dot: null,
-    svg: null
+    svg: null,
+    error: null,
 } as FilesState;
 
 export const filesSlice = createSlice({
@@ -61,6 +63,11 @@ export const filesSlice = createSlice({
         });
         builder.addCase(getSvgFromGraphviz.fulfilled, (state, action) => {
             state.svg = action.payload;
+            state.error = null;
+        });
+        builder.addCase(getSvgFromGraphviz.rejected, (state, action) => {
+            state.error = 'Graph Error';
+            state.svg = null;
         });
     }
 });

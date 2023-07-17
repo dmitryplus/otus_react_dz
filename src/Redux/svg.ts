@@ -47,10 +47,6 @@ export const svgSlice = createSlice({
     reducers: {
         fillStateFromSvg: (state = initialState, action) => {
 
-
-            console.log(action.payload);
-
-
             const fullParsed = parse(action.payload);
 
             const parsed = fullParsed?.children[0];

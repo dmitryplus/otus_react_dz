@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useLocation, useParams } from 'react-router-dom';
 import { createDotFromXhprof, getSvgFromGraphviz, loadXhprofData } from '../Redux/files';
+import { Error } from './Error';
 
 export function ComponentWithState() {
     //const [scaleSize, setScaleSize] = useState<ScaleSize>(1);
@@ -16,6 +17,8 @@ export function ComponentWithState() {
     const filesList = useSelector(store => store.files.files);
     const dotData = useSelector(store => store.files.dot);
     const originalSvg = useSelector(store => store.files.svg);
+
+    const isError = useSelector(store => store.files.error);
 
     const dispatch = useDispatch<any>();
 
@@ -44,6 +47,10 @@ export function ComponentWithState() {
 
     if (originalSvg != null) {
         resultSvgContainer = <Container />;
+    }
+
+    if (isError) {
+        resultSvgContainer = <Error />;
     }
 
     return (
