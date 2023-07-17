@@ -41,18 +41,24 @@ const initialState = {
     data: null,
     dot: null,
     svg: null,
-    error: null,
+    error: null
 } as FilesState;
 
 export const filesSlice = createSlice({
     name: 'files',
     initialState,
     reducers: {
+        resetData: (state = initialState) => {
+            state.data = null;
+            state.dot = null;
+            state.svg = null;
+            state.error = null;
+        },
         createDotFromXhprof: (state = initialState) => {
             if (state.data != null && state.dot == null) {
                 state.dot = xhprofGenerateDotScript(state.data);
             }
-        },
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(updateFilesList.fulfilled, (state, action) => {
@@ -72,5 +78,5 @@ export const filesSlice = createSlice({
     }
 });
 
-export const { createDotFromXhprof } = filesSlice.actions;
+export const { createDotFromXhprof, resetData } = filesSlice.actions;
 
