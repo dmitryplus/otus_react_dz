@@ -12,6 +12,10 @@ export const Container: React.FC<ContainerProps> = ({}: ContainerProps) => {
     const svgParams = useSelector(store => store.svg.params);
     const svgElements = useSelector(store => store.svg.elements);
 
+    const scale = useSelector(store => store.svg.scale);
+    const translate = useSelector(store => store.svg.translate);
+    const viewBox = useSelector(store => store.svg.viewBox);
+
     const dispatch = useDispatch<any>();
 
     useEffect(() => {
@@ -123,19 +127,16 @@ export const Container: React.FC<ContainerProps> = ({}: ContainerProps) => {
 
         if (svgParams) {
 
-
-            console.log(svgParams['transform']);
-
+            const transform = "scale(" + scale + ") translate(" + translate + ")";
 
             return <svg
             xmlns="http://www.w3.org/2000/svg"
-         //   viewBox={svgParams['viewBox']}
+            viewBox={viewBox}
             width={svgParams['width']}
             height={svgParams['height']}
                 >
-                <g id={svgParams['id']} className={svgParams['class']} transform="scale(1 1) translate(4 2970.0161)">
+                <g id={svgParams['id']} className={svgParams['class']} transform={transform}>
                     {nodes.map(item => item)}
-
                 </g>
         </svg>
 

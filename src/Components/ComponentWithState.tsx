@@ -15,6 +15,7 @@ export function ComponentWithState() {
     const xhprofData = useSelector(store => store.files.data);
     const filesList = useSelector(store => store.files.files);
     const dotData = useSelector(store => store.files.dot);
+    const originalSvg = useSelector(store => store.files.svg);
 
     const dispatch = useDispatch<any>();
 
@@ -33,17 +34,23 @@ export function ComponentWithState() {
     }, [dotData, xhprofData]);
 
     useEffect(() => {
-        if (dotData != null) {
+        if (dotData != null && originalSvg === null) {
             dispatch(getSvgFromGraphviz(dotData));
         }
     }, [dotData]);
 
 
+    let resultSvgContainer = <></>;
+
+    if (originalSvg != null) {
+        resultSvgContainer = <Container />;
+    }
+
     return (
         <>
             {/*<Panel onScaleSizeChange={setScaleSize} />*/}
             <Styles.MainScreen>
-                {/*<Container xhprof={xhprofData} />*/}
+                {resultSvgContainer}
             </Styles.MainScreen>
         </>
     );
