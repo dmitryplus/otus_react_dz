@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { parse } from 'svg-parser';
 
-interface SvgElement {
+export interface SvgElement {
     type: string,
     tagName: string,
     properties: Object,
@@ -66,6 +66,8 @@ export const svgSlice = createSlice({
             state.translate = allParams['transform'].slice(startTranslate, stopTranslate);
 
             state.elements = parsed?.children[0]?.children;
+
+            console.log(state.params);
         }
     }
 });
