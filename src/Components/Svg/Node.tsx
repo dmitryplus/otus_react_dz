@@ -3,14 +3,15 @@ import { SvgElement } from '../../Redux/svg';
 import { v4 as uuidv4 } from 'uuid';
 
 
-const generateKey = (index) => {
+const generateKey = (index: string) => {
     return `${ index }_${ new Date().getTime() }`;
 }
 
-export const Node: FC = (params: SvgElement) => {
+interface NodeProps {
+    params: SvgElement
+}
 
-
-    //console.log(params);
+export const Node:React.FC<NodeProps> = (props: {params: SvgElement}) => {
 
     let title: string | undefined = '';
     let polygonFill: string | undefined = '';
@@ -23,21 +24,16 @@ export const Node: FC = (params: SvgElement) => {
 
     const textElements: ReactElement[] = [];
 
-    params.children.forEach((item, index) => {
-
-        //console.log(item);
+    props.params.children.forEach((item, index) => {
 
         if (item.tagName === 'title') {
             title = item.children[0]?.value;
         }
 
         if (item.tagName === 'polygon') {
-
             polygonFill = item.properties.fill;
             polygonStroke = item.properties.stroke;
             points = item.properties.points;
-
-            //strokeWidth = null;
         }
 
         if (item.tagName === 'path') {
@@ -80,11 +76,11 @@ export const Node: FC = (params: SvgElement) => {
         pathStroke = undefined;
     }
 
-    if (params.properties?.class === 'edge') {
+    if (props.params.properties?.class === 'edge') {
         path = <path fill={pathFill} stroke={pathStroke} strokeWidth={strokeWidth} d={d}/>
     }
 
-    if (params.properties?.class === 'node' || strokeWidth === '') {
+    if (props.params.properties?.class === 'node' || strokeWidth === '') {
         strokeWidth = undefined;
     }
 
@@ -96,12 +92,14 @@ export const Node: FC = (params: SvgElement) => {
         polygonStroke = undefined;
     }
 
-    return <g id={params.properties?.id} className={params.properties?.class} key={uuidv4()}>
-        <title>{title}</title>
-        {path}
-        <polygon fill={polygonFill} stroke={polygonStroke} strokeWidth={strokeWidth} points={points} />
-        {textElements.map(item => item)}
-    </g>;
+    return (
+        <g id={props.params.properties?.id} className={props.params.properties?.class} key={uuidv4()}>
+            <title>{title}</title>
+            {path}
+            <polygon fill={polygonFill} stroke={polygonStroke} strokeWidth={strokeWidth} points={points} />
+            {textElements.map(item => item)}
+        </g>
+    );
 
 
 };

@@ -38,7 +38,7 @@ export const Container: React.FC<ContainerProps> = ({}: ContainerProps) => {
         if (svgElements) {
 
             svgElements.forEach((item: SvgElement) => {
-                nodes.push(Node(item));
+                nodes.push(Node({params: item}));
             });
 
         }
