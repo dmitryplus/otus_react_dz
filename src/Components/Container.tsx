@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as Styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { fillStateFromSvg, SvgElement } from '../Redux/svg';
@@ -10,6 +10,8 @@ interface ContainerProps {
 
 export const Container: React.FC<ContainerProps> = ({}: ContainerProps) => {
 
+    const [isScroll, setScroll] = useState(false);
+
     const originalSvg = useSelector(store => store.files.svg);
     const svgParams = useSelector(store => store.svg.params);
     const svgElements = useSelector(store => store.svg.elements);
@@ -19,6 +21,8 @@ export const Container: React.FC<ContainerProps> = ({}: ContainerProps) => {
     const viewBox = useSelector(store => store.svg.viewBox);
 
     const dispatch = useDispatch<any>();
+
+    const containerRef = useRef(null);
 
     useEffect(() => {
 
@@ -31,9 +35,7 @@ export const Container: React.FC<ContainerProps> = ({}: ContainerProps) => {
 
     const Canvas = () => {
 
-        let nodes = [];
-
-        let edges = [];
+        let nodes: (React.ReactElement<any, any> | null)[] = [];
 
         if (svgElements) {
 
@@ -67,8 +69,29 @@ export const Container: React.FC<ContainerProps> = ({}: ContainerProps) => {
     };
 
 
+    function onMouseDown(e) {
+        setScroll(true);
+        containerRef.current.style.cursor = "all-scroll";
+    }
+
+    function onMouseUp(e) {
+        setScroll(false);
+        containerRef?.current?.style?.cursor = "default";
+    }
+
+    function onMouseMove(e) {
+        if (isScroll) {
+            containerRef.current.scrollLeft = containerRef.current.scrollLeft - e.movementX;
+            containerRef.current.scrollTop = containerRef.current.scrollTop - e.movementY;
+        }
+    }
+
     return (
-        <Styles.Container>
+        <Styles.Container ref={containerRef}
+                          onMouseDown={onMouseDown}
+                          onMouseUp={onMouseUp}
+                          onMouseMove={onMouseMove}
+        >
             <Canvas />
         </Styles.Container>
     );

@@ -1,8 +1,11 @@
 import axios from '../Hooks/axios';
 
+class T {
+}
+
 export const GetGraphvizSvg = async (body: string): Promise<{ data: T; status: number }> => {
 
-    const apiUrl = `https://quickchart.io/graphviz`;
+    const apiUrl: string = `https://quickchart.io/graphviz`;
 
     const { data, status } = await axios.post(
         apiUrl,
@@ -11,8 +14,6 @@ export const GetGraphvizSvg = async (body: string): Promise<{ data: T; status: n
             headers: { 'Content-Type': 'application/json' }
         }
     );
-
-    //console.log(data);
 
     return { data: data, status };
 };
