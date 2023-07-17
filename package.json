@@ -99,7 +99,8 @@
     "redux-thunk": "^2.4.2",
     "sprintf-js": "^1.1.2",
     "styled-components": "^6.0.0-rc.3",
-    "svg-parser": "^2.0.4"
+    "svg-parser": "^2.0.4",
+    "uuid": "^9.0.0"
   },
   "loki": {
     "configurations": {

@@ -14,6 +14,7 @@ export interface SvgElement {
         "text-anchor"?: string,
         "font-family"?: string,
         "font-size"?: string,
+        "stroke-width"?: string,
         d?: string,
         x?: string,
         y?: string

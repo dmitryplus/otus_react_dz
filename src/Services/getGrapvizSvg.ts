@@ -12,5 +12,7 @@ export const GetGraphvizSvg = async (body: string): Promise<{ data: T; status: n
         }
     );
 
+    //console.log(data);
+
     return { data: data, status };
 };

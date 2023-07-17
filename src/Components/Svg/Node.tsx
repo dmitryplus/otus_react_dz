@@ -1,6 +1,11 @@
 import React, { FC, ReactElement } from 'react';
 import { SvgElement } from '../../Redux/svg';
+import { v4 as uuidv4 } from 'uuid';
 
+
+const generateKey = (index) => {
+    return `${ index }_${ new Date().getTime() }`;
+}
 
 export const Node: FC = (params: SvgElement) => {
 
@@ -8,9 +13,13 @@ export const Node: FC = (params: SvgElement) => {
     //console.log(params);
 
     let title: string | undefined = '';
-    let fill: string | undefined = '';
-    let stroke: string | undefined = '';
+    let polygonFill: string | undefined = '';
+    let polygonStroke: string | undefined = '';
+    let pathFill: string | undefined = '';
+    let pathStroke: string | undefined = '';
     let points: string | undefined = '';
+    let d: string | undefined = '';
+    let strokeWidth: string | undefined = '';
 
     const textElements: ReactElement[] = [];
 
@@ -24,26 +33,24 @@ export const Node: FC = (params: SvgElement) => {
 
         if (item.tagName === 'polygon') {
 
-            fill = item.properties.fill;
-            stroke = item.properties.stroke;
+            polygonFill = item.properties.fill;
+            polygonStroke = item.properties.stroke;
             points = item.properties.points;
 
+            //strokeWidth = null;
+        }
 
+        if (item.tagName === 'path') {
+            pathFill = item.properties.fill;
+            pathStroke = item.properties.stroke;
+            d = item.properties.d;
 
+            strokeWidth = item.properties['stroke-width'];
         }
 
         if (item.tagName === 'text') {
 
-            let key: string = index.toString();
-
-            if (item?.children[0]?.value) {
-                key = item?.children[0]?.value;
-            }
-
-            if (params.properties?.id) {
-                key = key + params.properties?.id;
-            }
-
+            const key = uuidv4();
 
             textElements.push(
                 <text
@@ -63,9 +70,36 @@ export const Node: FC = (params: SvgElement) => {
 
     });
 
-    return <g id={params.properties?.id} className={params.properties?.class} key={params.properties?.id}>
+    let path = <></>;
+
+    if (pathFill === '') {
+        pathFill = undefined;
+    }
+
+    if (pathStroke === '') {
+        pathStroke = undefined;
+    }
+
+    if (params.properties?.class === 'edge') {
+        path = <path fill={pathFill} stroke={pathStroke} strokeWidth={strokeWidth} d={d}/>
+    }
+
+    if (params.properties?.class === 'node' || strokeWidth === '') {
+        strokeWidth = undefined;
+    }
+
+    if (polygonFill === '') {
+        polygonFill = undefined;
+    }
+
+    if (polygonStroke === '') {
+        polygonStroke = undefined;
+    }
+
+    return <g id={params.properties?.id} className={params.properties?.class} key={uuidv4()}>
         <title>{title}</title>
-        <polygon fill={fill} stroke={stroke} points={points} />
+        {path}
+        <polygon fill={polygonFill} stroke={polygonStroke} strokeWidth={strokeWidth} points={points} />
         {textElements.map(item => item)}
     </g>;
 
