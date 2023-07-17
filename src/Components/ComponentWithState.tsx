@@ -7,7 +7,7 @@ import * as Styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useLocation, useParams } from 'react-router-dom';
-import { createDotFromXhprof, loadXhprofData } from '../Redux/files';
+import { createDotFromXhprof, getSvgFromGraphviz, loadXhprofData } from '../Redux/files';
 
 export function ComponentWithState() {
     //const [scaleSize, setScaleSize] = useState<ScaleSize>(1);
@@ -34,9 +34,10 @@ export function ComponentWithState() {
 
     useEffect(() => {
         if (dotData != null) {
-            console.log('dot data create');
+            dispatch(getSvgFromGraphviz(dotData));
         }
     }, [dotData]);
+
 
     return (
         <>

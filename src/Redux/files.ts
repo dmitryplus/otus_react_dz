@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { GetFilesList, LoadXhprofFromFolder, xhprofGenerateDotScript } from '../Services';
 import { Xhprof } from '../Types';
+import { GetGraphvizSvg } from '../Services/getGrapvizSvg';
 
 
 export const updateFilesList = createAsyncThunk(
@@ -19,16 +20,26 @@ export const loadXhprofData = createAsyncThunk(
     }
 );
 
+export const getSvgFromGraphviz = createAsyncThunk(
+    'files/getSvg',
+    async (dotFile: string) => {
+        const response = await GetGraphvizSvg(dotFile);
+        return response.data;
+    }
+);
+
 interface FilesState {
     files: [],
     data: Xhprof | null,
     dot: string | null,
+    svg: string | null,
 }
 
 const initialState = {
     files: [],
     data: null,
-    dot: null
+    dot: null,
+    svg: null
 } as FilesState;
 
 export const filesSlice = createSlice({
@@ -47,6 +58,9 @@ export const filesSlice = createSlice({
         });
         builder.addCase(loadXhprofData.fulfilled, (state, action) => {
             state.data = action.payload;
+        });
+        builder.addCase(getSvgFromGraphviz.fulfilled, (state, action) => {
+            state.svg = action.payload;
         });
     }
 });
