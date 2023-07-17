@@ -4,8 +4,22 @@ import { parse } from 'svg-parser';
 export interface SvgElement {
     type: string,
     tagName: string,
-    properties: Object,
-    children: []
+    properties: {
+        class?: string,
+        id?: string,
+        value?: string,
+        fill?: string,
+        stroke?: string,
+        points?: string,
+        "text-anchor"?: string,
+        "font-family"?: string,
+        "font-size"?: string,
+        d?: string,
+        x?: string,
+        y?: string
+    },
+    value?: string,
+    children: [SvgElement]
 }
 
 interface SvgParams {

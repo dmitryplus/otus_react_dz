@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import * as Styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { fillStateFromSvg } from '../Redux/svg';
+import { fillStateFromSvg, SvgElement } from '../Redux/svg';
 import { Node } from './Svg/Node'
+import { Edge } from './Svg/Edge';
 
 interface ContainerProps {}
 
@@ -36,18 +37,18 @@ export const Container: React.FC<ContainerProps> = ({}: ContainerProps) => {
 
          if (svgElements) {
 
-            svgElements.forEach((item) => {
+            console.log(svgElements);
+
+            svgElements.forEach((item: SvgElement) => {
 
                 if (item.properties.class === 'node') {
                     nodes.push(Node(item));
 
                 }
 
-                // if (item.properties.class === 'edge') {
-                //
-                //     edges.push(Edge(item));
-                //
-                // }
+                if (item.properties.class === 'edge') {
+                    edges.push(Edge(item));
+                }
 
             });
 
