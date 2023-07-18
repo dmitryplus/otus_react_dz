@@ -85,21 +85,6 @@ export const svgSlice = createSlice({
 
         updateScale: (state, action) => {
             state.scale += action.payload;
-
-
-            console.log(state.width, state.height);
-
-            // console.log(state);
-            //
-            const translateX = (1 - state.scale) * Number(state.width);
-            const translateY = (1 - state.scale) * Number(state.height);
-            //
-            //state.translate = translateX + ' ' + translateY
-
-            //state.translate = '0 0';
-            //
-            // console.log(state);
-
         }
     }
 });
