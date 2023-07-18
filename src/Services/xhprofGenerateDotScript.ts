@@ -8,8 +8,7 @@ import {
 
 import { sprintf } from 'sprintf-js';
 
-export const xhprofGenerateDotScript = (rowData: Xhprof) => {
-        const threshold = 0.01;
+export const xhprofGenerateDotScript = (rowData: Xhprof, threshold: number = 0.01) => {
 
         const right: Xhprof = {};
         const left: Xhprof = {};
@@ -25,9 +24,6 @@ export const xhprofGenerateDotScript = (rowData: Xhprof) => {
         const childrenTable = xhprofGetChildrenTable(rowData);
 
         let node: string | null = 'main()';
-
-
-        //console.log(childrenTable[node]);
 
 
         interface Paths {
@@ -86,21 +82,13 @@ export const xhprofGenerateDotScript = (rowData: Xhprof) => {
 
 
         //TODO тут можно фильтровать
-// // use the function to filter out irrelevant functions.
-// if (!empty($func)) {
+        // // use the function to filter out irrelevant functions.
+        // if (!empty($func)) {
 
         const func = undefined;
 
 
         let result = 'digraph call_graph {\n';
-
-
-        //TODO  тут обрабатываем параметр threshold - перенести в стэйт
-        // Filter out functions whose exclusive time ratio is below threshold, and
-        // also assign a unique integer id for each function to be generated. In the
-        // meantime, find the function with the most exclusive time (potentially the
-        // performance bottleneck).
-
 
         let cur_id = 0;
         let max_wt = 0;
@@ -160,10 +148,10 @@ export const xhprofGenerateDotScript = (rowData: Xhprof) => {
             if (symbol === 'main()') {
                 shape = 'octagon';
                 name = 'Total: ' + (totals.wt / 1000.0) + ' ms\\n'
-                    + symbol.replace(/'/g, '\\\'');
+                    + symbol.replace(/'/g, '\\\'').replace(/\\/g, '\\\\');
             } else {
                 shape = 'box';
-                name = symbol.replace(/'/g, '\\\'') + '\\nInc: ' + sprintf('%.3f', info.wt / 1000) +
+                name = symbol.replace(/'/g, '\\\'').replace(/\\/g, '\\\\') + '\\nInc: ' + sprintf('%.3f', info.wt / 1000) +
                     ' ms (' + sprintf('%.1f%%', 100 * info.wt / totals.wt) + ')';
             }
 
