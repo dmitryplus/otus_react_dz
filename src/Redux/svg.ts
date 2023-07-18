@@ -38,8 +38,8 @@ interface SvgState {
     params: SvgParams | null
     elements: [SvgElement] | null,
     viewBox: string | null,
-    height: string | null,
-    width: string | null,
+    height: number | null,
+    width: number | null,
     id: string | null,
     translate: string | null,
     scale: number
@@ -71,8 +71,8 @@ export const svgSlice = createSlice({
             state.params = allParams;
 
             state.viewBox = allParams['viewBox'];
-            state.height = allParams['height'];
-            state.width = allParams['width'];
+            state.height = Number(allParams['height'].replace('pt',''));
+            state.width = Number(allParams['width'].replace('pt',''));
             state.id = allParams['id'];
 
             const startTranslate = allParams['transform'].indexOf('translate(') + 'translate('.length;
@@ -81,11 +81,28 @@ export const svgSlice = createSlice({
             state.translate = allParams['transform'].slice(startTranslate, stopTranslate);
 
             state.elements = parsed?.children[0]?.children;
+        },
 
-            console.log(state.params);
+        updateScale: (state, action) => {
+            state.scale += action.payload;
+
+
+            console.log(state.width, state.height);
+
+            // console.log(state);
+            //
+            const translateX = (1 - state.scale) * Number(state.width);
+            const translateY = (1 - state.scale) * Number(state.height);
+            //
+            //state.translate = translateX + ' ' + translateY
+
+            //state.translate = '0 0';
+            //
+            // console.log(state);
+
         }
     }
 });
 
-export const { fillStateFromSvg } = svgSlice.actions;
+export const { fillStateFromSvg, updateScale } = svgSlice.actions;
 

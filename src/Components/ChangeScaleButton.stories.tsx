@@ -1,16 +1,16 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { ChangeScaleButton } from './ChangeScaleButton';
+import { ScaleBlock } from './ScaleBlock';
 
 export default {
     title: 'ComponentWithState/Calculator/Button',
-    component: ChangeScaleButton,
+    component: ScaleBlock,
 // eslint-disable-next-line prettier/prettier
-} as ComponentMeta<typeof ChangeScaleButton>;
+} as ComponentMeta<typeof ScaleBlock>;
 
 
-const Template: ComponentStory<typeof ChangeScaleButton> = (args) => <ChangeScaleButton {...args} />;
+const Template: ComponentStory<typeof ScaleBlock> = (args) => <ScaleBlock {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

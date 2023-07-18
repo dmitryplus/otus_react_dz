@@ -55,7 +55,6 @@ export function ComponentWithState() {
 
     return (
         <>
-            {/*<Panel onScaleSizeChange={setScaleSize} />*/}
             <Styles.MainScreen>
                 {resultSvgContainer}
             </Styles.MainScreen>

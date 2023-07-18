@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { ScaleSize } from '../Types';
 
 export const Container = styled.div`
-  height: 600px;
-  width: 100%;
+  height: 400px;
+  width: 50%;
   border:2px solid #000;
-  overflow: scroll;
+  overflow: auto;
  
 `;
 export const SVG = styled.svg`

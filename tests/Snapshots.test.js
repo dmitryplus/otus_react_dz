@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { Calculator } from '../src/Components/Calculator';
-import { ChangeScaleButton } from '@/Components/ChangeScaleButton';
+import { ScaleBlock } from '@/Components/ScaleBlock';
 
 describe('Snapshot renders', () => {
     test('Calculator', () => {
@@ -11,7 +11,7 @@ describe('Snapshot renders', () => {
     });
 
     test('Button', () => {
-        const component = renderer.create(<ChangeScaleButton label={'0'} />);
+        const component = renderer.create(<ScaleBlock label={'0'} />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });

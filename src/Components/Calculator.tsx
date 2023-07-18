@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChangeScaleButton } from './ChangeScaleButton';
+import { ScaleBlock } from './ScaleBlock';
 
 interface CalculatorProps {
     result: string;
