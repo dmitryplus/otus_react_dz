@@ -9,8 +9,6 @@ interface ButtonProps {
 
 export const ScaleBlock: React.FC<ButtonProps> = ({}: ButtonProps) => {
 
-    console.log('work');
-
     const scale = useSelector(store => store.svg.scale);
     const dispatch = useDispatch<any>();
 

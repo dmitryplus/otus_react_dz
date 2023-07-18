@@ -11,10 +11,10 @@ export interface SvgElement {
         fill?: string,
         stroke?: string,
         points?: string,
-        "text-anchor"?: string,
-        "font-family"?: string,
-        "font-size"?: string,
-        "stroke-width"?: string,
+        'text-anchor'?: string,
+        'font-family'?: string,
+        'font-size'?: string,
+        'stroke-width'?: string,
         d?: string,
         x?: string,
         y?: string
@@ -40,6 +40,8 @@ interface SvgState {
     viewBox: string | null,
     height: number | null,
     width: number | null,
+    originalWidth: number | null,
+    originalHeight: number | null,
     id: string | null,
     translate: string | null,
     scale: number
@@ -71,20 +73,33 @@ export const svgSlice = createSlice({
             state.params = allParams;
 
             state.viewBox = allParams['viewBox'];
-            state.height = Number(allParams['height'].replace('pt',''));
-            state.width = Number(allParams['width'].replace('pt',''));
+            state.height = Number(allParams['height'].replace('pt', ''));
+            state.width = Number(allParams['width'].replace('pt', ''));
+
+            state.originalWidth = state.width;
+            state.originalHeight = state.height;
+
             state.id = allParams['id'];
 
-            const startTranslate = allParams['transform'].indexOf('translate(') + 'translate('.length;
-            const stopTranslate = allParams['transform'].indexOf(')', startTranslate);
-
-            state.translate = allParams['transform'].slice(startTranslate, stopTranslate);
+            state.translate = '4 ' + Math.round(state.height);
 
             state.elements = parsed?.children[0]?.children;
+
+            state.scale = 1;
         },
 
         updateScale: (state, action) => {
             state.scale += action.payload;
+
+            if (state.scale < 0.1) {
+                state.scale = 0.1;
+            }
+
+            if ( state.originalWidth && state.originalHeight ) {
+                state.width = Math.round(state!.originalWidth * state.scale);
+                state.height = Math.round(state.originalHeight * state.scale);
+                state.translate = '4 ' + Math.round(state.originalHeight);
+            }
         }
     }
 });

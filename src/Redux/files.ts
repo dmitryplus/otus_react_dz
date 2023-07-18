@@ -34,6 +34,7 @@ interface FilesState {
     dot: string | null,
     svg: string | null,
     error: string | null,
+    threshold: number,
 }
 
 const initialState = {
@@ -41,13 +42,20 @@ const initialState = {
     data: null,
     dot: null,
     svg: null,
-    error: null
+    error: null,
+    threshold: 0.01
 } as FilesState;
 
 export const filesSlice = createSlice({
     name: 'files',
     initialState,
     reducers: {
+        setTreshold: (state, action) => {
+            state.dot = null;
+            state.svg = null;
+            state.error = null;
+            state.threshold = Number(action.payload);
+        },
         resetData: (state = initialState) => {
             state.data = null;
             state.dot = null;
@@ -56,7 +64,7 @@ export const filesSlice = createSlice({
         },
         createDotFromXhprof: (state = initialState) => {
             if (state.data != null && state.dot == null) {
-                state.dot = xhprofGenerateDotScript(state.data);
+                state.dot = xhprofGenerateDotScript(state.data, state.threshold);
             }
         }
     },
@@ -68,7 +76,7 @@ export const filesSlice = createSlice({
             state.data = action.payload;
         });
         builder.addCase(getSvgFromGraphviz.fulfilled, (state, action) => {
-            state.svg = action.payload;
+            state.svg = action.payload as string;
             state.error = null;
         });
         builder.addCase(getSvgFromGraphviz.rejected, (state, action) => {
@@ -78,5 +86,5 @@ export const filesSlice = createSlice({
     }
 });
 
-export const { createDotFromXhprof, resetData } = filesSlice.actions;
+export const { createDotFromXhprof, resetData, setTreshold } = filesSlice.actions;
 
