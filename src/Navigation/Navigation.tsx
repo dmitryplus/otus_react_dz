@@ -1,12 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import FileList from '../Screens/FileList';
 import NotFound from '../Screens/NotFound';
-import { GetLinkToGraphTemplate } from '../Services/Navigation';
+import { GetLinkToGraphTemplate } from '../Services';
 import { LoaderWrapper } from '../Components/LoaderWrapper/LoaderWrapper';
 
-export const Navigation: FC = ({ children }) => (
+interface NavigationProps {
+  children: any;
+}
+
+export const Navigation: FC<PropsWithChildren<NavigationProps>> = ({ children }) => (
   <HashRouter>
     {children}
     <Routes>
