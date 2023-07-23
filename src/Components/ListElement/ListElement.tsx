@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { GetLinkToGraph } from "../../Services";
+import { GetLinkToGraph } from '../../Services';
 import s from './ListElement.module.sass';
 
 interface FileProps {
