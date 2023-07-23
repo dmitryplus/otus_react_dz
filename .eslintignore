@@ -1,1 +1,5 @@
 node_modules
+docs
+dist
+src/stories
+jestSetupFile.js
