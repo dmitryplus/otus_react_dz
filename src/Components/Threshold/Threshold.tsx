@@ -1,8 +1,9 @@
-import React, { Dispatch, MouseEventHandler, SetStateAction, useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTreshold } from '../Redux/files';
+import { setTreshold } from '../../Redux/files';
+import s from "./Threshold.module.sass";
 
-export const ThresholdBlock: React.FC = () => {
+export const Threshold: React.FC = () => {
   const threshold = useSelector((store) => store.files.threshold);
 
   const [localThreshold, setLocalThreshold] = useState(threshold);
@@ -10,10 +11,10 @@ export const ThresholdBlock: React.FC = () => {
   const dispatch = useDispatch<any>();
 
   return (
-    <>
+    <div className={s.root}>
       <p>Ограничение на вывод:</p>
       <input defaultValue={threshold.toFixed(2)} onInput={(e) => setLocalThreshold(e.target.value)} />
       <button onClick={(e) => dispatch(setTreshold(localThreshold))}>Установить</button>
-    </>
+    </div>
   );
 };

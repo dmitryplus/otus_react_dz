@@ -1,11 +1,11 @@
 import React from 'react';
-import { ScaleBlock } from '../ScaleBlock';
-import { ThresholdBlock } from '../ThresholdBlock';
+import { Scale } from '../Scale/Scale';
+import { Threshold } from '../Threshold/Threshold';
 import s from './Panel.module.sass';
 
 export const Panel: React.FC = () => (
   <div className={s.root}>
-    <ScaleBlock />
-    <ThresholdBlock />
+    <Scale />
+    <Threshold />
   </div>
 );
