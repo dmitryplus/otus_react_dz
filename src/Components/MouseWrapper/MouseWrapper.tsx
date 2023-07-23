@@ -33,8 +33,8 @@ export const MouseWrapper: React.FC = () => {
 
   function onMouseMove(e: MouseEventHandler<HTMLDivElement>) {
     if (isScroll) {
-      containerRef.current.scrollLeft = containerRef.current.scrollLeft - e.movementX;
-      containerRef.current.scrollTop = containerRef.current.scrollTop - e.movementY;
+      containerRef.current.scrollLeft -= e.movementX;
+      containerRef.current.scrollTop -= e.movementY;
     }
   }
 
