@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { GetFilesList, GetGraphvizSvg, LoadXhprofFromFolder, generateDotScript } from '../Services';
-import { Xhprof } from '../Types';
+import { FilesState } from '../Types';
 
 export const updateFilesList = createAsyncThunk('files/fetchAll', async () => {
   const response = await GetFilesList();
@@ -17,15 +17,6 @@ export const getSvgFromGraphviz = createAsyncThunk('files/getSvg', async (dotFil
   return response.data;
 });
 
-interface FilesState {
-  files: [];
-  data: Xhprof | null;
-  dot: string | null;
-  svg: string | null;
-  error: string | null;
-  threshold: number;
-}
-
 const initialState = {
   files: [],
   data: null,
@@ -39,7 +30,7 @@ export const filesSlice = createSlice({
   name: 'files',
   initialState,
   reducers: {
-    setTreshold: (state, action) => {
+    setTreshold: (state: FilesState, action) => {
       state.dot = null;
       state.svg = null;
       state.error = null;

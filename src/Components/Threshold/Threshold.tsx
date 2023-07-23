@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTreshold } from '../../Redux/files';
-import s from "./Threshold.module.sass";
+import s from './Threshold.module.sass';
+import { State } from '../../Types';
 
 export const Threshold: React.FC = () => {
-  const threshold = useSelector((store) => store.files.threshold);
+  const threshold = useSelector((store: State) => store.files.threshold);
 
   const [localThreshold, setLocalThreshold] = useState(threshold);
 
