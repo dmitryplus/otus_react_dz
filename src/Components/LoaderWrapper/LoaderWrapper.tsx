@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
-import { MouseWrapper } from './MouseWrapper';
-import { createDotFromXhprof, getSvgFromGraphviz, loadXhprofData } from '../Redux/files';
-import { Error } from './Error';
-import { State } from '../Types';
-import { Panel } from './Panel/Panel';
+import { MouseWrapper } from '../MouseWrapper';
+import { createDotFromXhprof, getSvgFromGraphviz, loadXhprofData } from '../../Redux/files';
+import { Error } from '../Error';
+import { State } from '../../Types';
+import { Panel } from '../Panel/Panel';
 
-export function ComponentWithState() {
+export function LoaderWrapper() {
   const xhprofData = useSelector((store: State) => store.files.data);
   const filesList = useSelector((store: State) => store.files.files);
   const dotData = useSelector((store: State) => store.files.dot);
