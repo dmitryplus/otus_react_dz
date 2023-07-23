@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import { Frame } from 'src/Components/Frame';
+import { Frame } from '../../Components/Frame';
 import { Helmet } from 'react-helmet';
 
 import s from './Graph.module.sass';

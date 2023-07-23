@@ -1,4 +1,3 @@
-export * from './loadXhprofFromFolder';
 export * from './xhprofComputeFlatInfo';
 export * from './xhprofGetMetrics';
 export * from './xhprofGetPossibleMetrics';
@@ -7,4 +6,4 @@ export * from './xhprofParseParentChild';
 export * from './xhprofGenerateDotScript';
 export * from './xhprofGetChildrenTable';
 export * from './xhprofBuildParentChildKey';
-export * from './getFilesList';
+export * from './Api';

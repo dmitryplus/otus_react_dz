@@ -1,3 +1,3 @@
 export interface ChildrenTable {
-    [key: string]: [string];
+  [key: string]: [string];
 }
