@@ -1,7 +1,6 @@
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fillStateFromSvg } from '../../Redux/svg';
-import { Panel } from '../Panel';
 import { Canvas } from '../Canvas/Canvas';
 import { State } from '../../Types';
 import s from './MouseWrapper.module.sass';
@@ -21,18 +20,18 @@ export const MouseWrapper: React.FC = () => {
     }
   }, [originalSvg]);
 
-  function onMouseDown(e: MouseEventHandler<HTMLDivElement>) {
+  function onMouseDown() {
     setScroll(true);
     containerRef.current.style.cursor = 'all-scroll';
   }
 
-  function onMouseUp(e: MouseEventHandler<HTMLDivElement>) {
+  function onMouseUp() {
     setScroll(false);
     containerRef.current.style.cursor = 'default';
   }
 
   function onMouseMove(e: MouseEventHandler<HTMLDivElement>) {
-    if (isScroll) {
+    if (isScroll && containerRef.current) {
       containerRef.current.scrollLeft -= e.movementX;
       containerRef.current.scrollTop -= e.movementY;
     }

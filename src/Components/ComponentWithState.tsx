@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { MouseWrapper } from './MouseWrapper/MouseWrapper';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
+import { MouseWrapper } from './MouseWrapper';
 import { createDotFromXhprof, getSvgFromGraphviz, loadXhprofData } from '../Redux/files';
 import { Error } from './Error';
 import { State } from '../Types';
@@ -51,5 +51,6 @@ export function ComponentWithState() {
     );
   }
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>;
 }
