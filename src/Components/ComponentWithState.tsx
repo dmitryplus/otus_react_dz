@@ -1,22 +1,19 @@
-import React, { Component, ReactHTMLElement, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Container } from './Container';
-import { ScaleSize, Xhprof } from '../Types';
-import { Panel } from './Panel';
-import { LoadXhprofFromFolder } from '../Services';
-import * as Styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { createDotFromXhprof, getSvgFromGraphviz, loadXhprofData } from '../Redux/files';
 import { Error } from './Error';
+import { State } from '../Types';
 
 export function ComponentWithState() {
-  const xhprofData = useSelector((store) => store.files.data);
-  const filesList = useSelector((store) => store.files.files);
-  const dotData = useSelector((store) => store.files.dot);
-  const originalSvg = useSelector((store) => store.files.svg);
+  const xhprofData = useSelector((store: State) => store.files.data);
+  const filesList = useSelector((store: State) => store.files.files);
+  const dotData = useSelector((store: State) => store.files.dot);
+  const originalSvg = useSelector((store: State) => store.files.svg);
 
-  const isError = useSelector((store) => store.files.error);
+  const isError = useSelector((store: State) => store.files.error);
 
   const dispatch = useDispatch<any>();
 
@@ -50,9 +47,5 @@ export function ComponentWithState() {
     resultSvgContainer = <Error />;
   }
 
-  return (
-    <>
-      <Styles.MainScreen>{resultSvgContainer}</Styles.MainScreen>
-    </>
-  );
+  return resultSvgContainer;
 }

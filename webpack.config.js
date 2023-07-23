@@ -4,8 +4,8 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const createPath = (dirName) => path.resolve(__dirname, dirName);
 const src = path.join(__dirname, 'src');
+const dist = path.join(__dirname, 'dist');
 
 module.exports = {
   context: src,
@@ -13,14 +13,13 @@ module.exports = {
   entry: './index.tsx',
   output: {
     filename: `[name].js`,
-    path: createPath('dist'),
+    path: dist,
   },
   resolve: {
     modules: [src, 'node_modules'],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
-      '@': createPath('src'),
-      src: createPath('./src'),
+      src,
     },
   },
   devtool: 'source-map',
@@ -115,24 +114,24 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: createPath('src/favicon.ico'),
-          to: createPath('dist'),
+          from: `${src}/favicon.ico`,
+          to: dist,
         },
       ],
     }),
     new CopyPlugin({
       patterns: [
         {
-          from: createPath('src/Data'),
-          to: createPath('dist/Data'),
+          from: `${src}/Data`,
+          to: `${dist}/Data`,
         },
       ],
     }),
     new CopyPlugin({
       patterns: [
         {
-          from: createPath('src/files-list.json'),
-          to: createPath('dist'),
+          from: `${src}/files-list.json`,
+          to: dist,
         },
       ],
     }),
