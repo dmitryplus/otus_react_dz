@@ -11,53 +11,48 @@ import { createDotFromXhprof, getSvgFromGraphviz, loadXhprofData } from '../Redu
 import { Error } from './Error';
 
 export function ComponentWithState() {
-    //const [scaleSize, setScaleSize] = useState<ScaleSize>(1);
+  const xhprofData = useSelector((store) => store.files.data);
+  const filesList = useSelector((store) => store.files.files);
+  const dotData = useSelector((store) => store.files.dot);
+  const originalSvg = useSelector((store) => store.files.svg);
 
-    const xhprofData = useSelector(store => store.files.data);
-    const filesList = useSelector(store => store.files.files);
-    const dotData = useSelector(store => store.files.dot);
-    const originalSvg = useSelector(store => store.files.svg);
+  const isError = useSelector((store) => store.files.error);
 
-    const isError = useSelector(store => store.files.error);
+  const dispatch = useDispatch<any>();
 
-    const dispatch = useDispatch<any>();
+  const { filename } = useParams();
 
-    const { filename } = useParams();
-
-    useEffect(() => {
-        if (filename != null && xhprofData === null && filesList.includes(filename)) {
-            dispatch(loadXhprofData(filename));
-        }
-    }, [xhprofData]);
-
-    useEffect(() => {
-        if (xhprofData != null) {
-            dispatch(createDotFromXhprof());
-        }
-    }, [dotData, xhprofData]);
-
-    useEffect(() => {
-        if (dotData != null && originalSvg === null) {
-            dispatch(getSvgFromGraphviz(dotData));
-        }
-    }, [dotData]);
-
-
-    let resultSvgContainer = <></>;
-
-    if (originalSvg != null) {
-        resultSvgContainer = <Container />;
+  useEffect(() => {
+    if (filename != null && xhprofData === null && filesList.includes(filename)) {
+      dispatch(loadXhprofData(filename));
     }
+  }, [xhprofData]);
 
-    if (isError) {
-        resultSvgContainer = <Error />;
+  useEffect(() => {
+    if (xhprofData != null) {
+      dispatch(createDotFromXhprof());
     }
+  }, [dotData, xhprofData]);
 
-    return (
-        <>
-            <Styles.MainScreen>
-                {resultSvgContainer}
-            </Styles.MainScreen>
-        </>
-    );
+  useEffect(() => {
+    if (dotData != null && originalSvg === null) {
+      dispatch(getSvgFromGraphviz(dotData));
+    }
+  }, [dotData]);
+
+  let resultSvgContainer = <></>;
+
+  if (originalSvg != null) {
+    resultSvgContainer = <Container />;
+  }
+
+  if (isError) {
+    resultSvgContainer = <Error />;
+  }
+
+  return (
+    <>
+      <Styles.MainScreen>{resultSvgContainer}</Styles.MainScreen>
+    </>
+  );
 }

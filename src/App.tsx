@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import { Start } from './Pages/Start';
 
 import { store } from './Redux/store';
 import { Navigation } from './Navigation';
+import { Head } from './Head';
 
 export function App() {
   return (
     <Provider store={store}>
       <Navigation>
-        <Start />
+        <Head />
       </Navigation>
     </Provider>
   );

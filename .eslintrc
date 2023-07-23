@@ -45,6 +45,7 @@
     "import/extensions": 0,
     "react/prop-types": 0,
     "import/no-unresolved": 0,
-    "react/jsx-filename-extension": [2, { "extensions": [".ts", ".tsx", ".js", ".jsx"] }]
+    "react/jsx-filename-extension": [2, { "extensions": [".ts", ".tsx", ".js", ".jsx"] }],
+    "react/function-component-definition": 0
   }
 }

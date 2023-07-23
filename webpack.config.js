@@ -5,9 +5,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const createPath = (dirName) => path.resolve(__dirname, dirName);
+const src = path.join(__dirname, 'src');
 
 module.exports = {
-  context: createPath('src'),
+  context: src,
   mode: 'development',
   entry: './index.tsx',
   output: {
@@ -15,9 +16,11 @@ module.exports = {
     path: createPath('dist'),
   },
   resolve: {
+    modules: [src, 'node_modules'],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
       '@': createPath('src'),
+      src: createPath('./src'),
     },
   },
   devtool: 'source-map',
