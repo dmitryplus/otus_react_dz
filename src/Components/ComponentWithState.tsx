@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Container } from './Container';
+import { MouseWrapper } from './MouseWrapper/MouseWrapper';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
 import { createDotFromXhprof, getSvgFromGraphviz, loadXhprofData } from '../Redux/files';
 import { Error } from './Error';
 import { State } from '../Types';
+import { Panel } from './Panel';
 
 export function ComponentWithState() {
   const xhprofData = useSelector((store: State) => store.files.data);
@@ -37,15 +38,18 @@ export function ComponentWithState() {
     }
   }, [dotData]);
 
-  let resultSvgContainer = <></>;
+  if (isError) {
+    return <Error />;
+  }
 
   if (originalSvg != null) {
-    resultSvgContainer = <Container />;
+    return (
+      <>
+        <MouseWrapper />
+        <Panel />
+      </>
+    );
   }
 
-  if (isError) {
-    resultSvgContainer = <Error />;
-  }
-
-  return resultSvgContainer;
+  return <></>;
 }

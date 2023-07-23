@@ -1,12 +1,12 @@
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
-import * as Styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { fillStateFromSvg } from '../Redux/svg';
-import { Panel } from './Panel';
-import { Canvas } from './Canvas/Canvas';
-import { State } from '../Types';
+import { fillStateFromSvg } from '../../Redux/svg';
+import { Panel } from '../Panel';
+import { Canvas } from '../Canvas/Canvas';
+import { State } from '../../Types';
+import s from './MouseWrapper.module.sass';
 
-export const Container: React.FC = () => {
+export const MouseWrapper: React.FC = () => {
   const [isScroll, setScroll] = useState(false);
 
   const originalSvg = useSelector((store: State) => store.files.svg);
@@ -39,11 +39,14 @@ export const Container: React.FC = () => {
   }
 
   return (
-    <>
-      <Styles.Container ref={containerRef} onMouseDown={onMouseDown} onMouseUp={onMouseUp} onMouseMove={onMouseMove}>
-        <Canvas />
-      </Styles.Container>
-      <Panel />
-    </>
+    <div
+      className={s.root}
+      ref={containerRef}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+      onMouseMove={onMouseMove}
+    >
+      <Canvas />
+    </div>
   );
 };
