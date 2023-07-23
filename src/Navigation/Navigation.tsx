@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
-import FileList from 'src/Screens/FileList';
-import NotFound from 'src/Screens/NotFound';
-import { GetLinkToGraphTemplate } from 'src/Services/Navigation';
+import FileList from '../Screens/FileList';
+import NotFound from '../Screens/NotFound';
+import { GetLinkToGraphTemplate } from '../Services/Navigation';
 import { ComponentWithState } from '../Components/ComponentWithState';
 
 export const Navigation: FC = ({ children }) => (

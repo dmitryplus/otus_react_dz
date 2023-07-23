@@ -6,7 +6,7 @@ import { MouseWrapper } from './MouseWrapper';
 import { createDotFromXhprof, getSvgFromGraphviz, loadXhprofData } from '../Redux/files';
 import { Error } from './Error';
 import { State } from '../Types';
-import { Panel } from './Panel';
+import { Panel } from './Panel/Panel';
 
 export function ComponentWithState() {
   const xhprofData = useSelector((store: State) => store.files.data);
