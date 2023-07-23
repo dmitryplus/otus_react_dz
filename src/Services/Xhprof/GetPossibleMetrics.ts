@@ -1,4 +1,4 @@
-export const xhprofGetPossibleMetrics = () => {
+export const getPossibleMetrics = () => {
   return {
     wt: ['Wall', 'microsecs', 'walltime'],
     ut: ['User', 'microsecs', 'user cpu time'],

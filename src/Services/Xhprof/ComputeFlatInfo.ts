@@ -1,14 +1,14 @@
 import { Xhprof, xprofParams } from '../Types/xhprof';
-import { xhprofComputeInclusiveTimes } from './xhprofComputeInclusiveTimes';
-import { xhprofGetMetrics } from './xhprofGetMetrics';
+import { computeInclusiveTimes } from './ComputeInclusiveTimes';
+import { getMetrics } from './GetMetrics';
 
 type functionResult = {
   symTable: object;
   totals: xprofParams;
 };
 
-export const xhprofComputeFlatInfo = (rowData: Xhprof): functionResult => {
-  const metrics = xhprofGetMetrics(rowData);
+export const computeFlatInfo = (rowData: Xhprof): functionResult => {
+  const metrics = getMetrics(rowData);
 
   //TODO  вынести в состояние
   const totals: xprofParams = {
@@ -22,7 +22,7 @@ export const xhprofComputeFlatInfo = (rowData: Xhprof): functionResult => {
     samples: 0,
   };
 
-  const symbol_tab = xhprofComputeInclusiveTimes(rowData);
+  const symbol_tab = computeInclusiveTimes(rowData);
 
   //TODO переделать - первый раз пустой, возможно еще не догрузился файл
   if (symbol_tab['main()'] === undefined) {

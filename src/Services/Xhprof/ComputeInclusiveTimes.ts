@@ -1,16 +1,16 @@
 import { Xhprof } from '../Types/xhprof';
-import { xhprofGetMetrics } from './xhprofGetMetrics';
-import { xhprofParseParentChild } from './xhprofParseParentChild';
+import { getMetrics } from './GetMetrics';
+import { parseParentChild } from './ParseParentChild';
 
-export const xhprofComputeInclusiveTimes = (rowData: Xhprof) => {
-  const metrics = xhprofGetMetrics(rowData);
+export const computeInclusiveTimes = (rowData: Xhprof) => {
+  const metrics = getMetrics(rowData);
 
   const symbol_tab: Xhprof = {};
 
   for (const parent_child of Object.keys(rowData)) {
     const info = rowData[parent_child];
 
-    const { parent, child } = xhprofParseParentChild(parent_child);
+    const { parent, child } = parseParentChild(parent_child);
 
     if (parent == child) {
       throw new Error(`Error in Raw Data: parent & child are both: ${parent}`);

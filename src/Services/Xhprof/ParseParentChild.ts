@@ -1,4 +1,4 @@
-export const xhprofParseParentChild = (parent_child: string) => {
+export const parseParentChild = (parent_child: string) => {
   const ret = parent_child.split('==>');
 
   if (ret[1] !== undefined) {

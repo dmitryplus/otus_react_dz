@@ -1,14 +1,14 @@
 import { Xhprof } from '../Types/xhprof';
 import {
-  xhprofBuildParentChildKey,
-  xhprofComputeFlatInfo,
-  xhprofGetChildrenTable,
-  xhprofParseParentChild,
+  buildParentChildKey,
+  computeFlatInfo,
+  getChildrenTable,
+  parseParentChild,
 } from './index';
 
 import { sprintf } from 'sprintf-js';
 
-export const xhprofGenerateDotScript = (rowData: Xhprof, threshold: number = 0.01) => {
+export const generateDotScript = (rowData: Xhprof, threshold: number = 0.01) => {
   const right: Xhprof = {};
   const left: Xhprof = {};
 
@@ -17,9 +17,9 @@ export const xhprofGenerateDotScript = (rowData: Xhprof, threshold: number = 0.0
   const max_fontsize = 35;
   const max_sizing_ratio = 20;
 
-  const { symTable, totals } = xhprofComputeFlatInfo(rowData);
+  const { symTable, totals } = computeFlatInfo(rowData);
 
-  const childrenTable = xhprofGetChildrenTable(rowData);
+  const childrenTable = getChildrenTable(rowData);
 
   let node: string | null = 'main()';
 
@@ -39,11 +39,11 @@ export const xhprofGenerateDotScript = (rowData: Xhprof, threshold: number = 0.0
 
       childrenTable[node].forEach(function (child, index) {
         if (visited[child] === undefined) {
-          const childWt = rowData[xhprofBuildParentChildKey(node, child)].wt;
+          const childWt = rowData[buildParentChildKey(node, child)].wt;
 
           if (
             max_child === null ||
-            Math.abs(childWt) > Math.abs(rowData[xhprofBuildParentChildKey(node, max_child)].wt)
+            Math.abs(childWt) > Math.abs(rowData[buildParentChildKey(node, max_child)].wt)
           ) {
             max_child = child;
           }
@@ -52,7 +52,7 @@ export const xhprofGenerateDotScript = (rowData: Xhprof, threshold: number = 0.0
 
       if (max_child !== null) {
         path[max_child] = true;
-        path_edges[xhprofBuildParentChildKey(node, max_child)] = true;
+        path_edges[buildParentChildKey(node, max_child)] = true;
       }
       node = max_child;
     } else {
@@ -157,7 +157,7 @@ export const xhprofGenerateDotScript = (rowData: Xhprof, threshold: number = 0.0
   for (const parent_child of Object.keys(rowData)) {
     const info = rowData[parent_child];
 
-    const { parent, child } = xhprofParseParentChild(parent_child);
+    const { parent, child } = parseParentChild(parent_child);
 
     if (
       symTable[parent] !== undefined &&
@@ -174,7 +174,7 @@ export const xhprofGenerateDotScript = (rowData: Xhprof, threshold: number = 0.0
       let linewidth = 1;
       let arrow_size = 1;
 
-      if (path_edges[xhprofBuildParentChildKey(parent, child)] !== undefined) {
+      if (path_edges[buildParentChildKey(parent, child)] !== undefined) {
         linewidth = 10;
         arrow_size = 2;
       }

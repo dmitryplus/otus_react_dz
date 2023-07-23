@@ -1,4 +1,4 @@
-export const xhprofBuildParentChildKey = (parent: string | null, child: string): string => {
+export const buildParentChildKey = (parent: string | null, child: string): string => {
   if (parent !== null) {
     return parent + '==>' + child;
   } else {

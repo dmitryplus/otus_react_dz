@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { GetFilesList, GetGraphvizSvg, LoadXhprofFromFolder, xhprofGenerateDotScript } from '../Services';
+import { GetFilesList, GetGraphvizSvg, LoadXhprofFromFolder, generateDotScript } from '../Services';
 import { Xhprof } from '../Types';
 
 export const updateFilesList = createAsyncThunk('files/fetchAll', async () => {
@@ -53,7 +53,7 @@ export const filesSlice = createSlice({
     },
     createDotFromXhprof: (state = initialState) => {
       if (state.data != null && state.dot == null) {
-        state.dot = xhprofGenerateDotScript(state.data, state.threshold);
+        state.dot = generateDotScript(state.data, state.threshold);
       }
     },
   },
