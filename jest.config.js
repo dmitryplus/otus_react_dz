@@ -23,7 +23,7 @@ module.exports = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "docs/coverage",
+  coverageDirectory: 'docs/coverage',
   coverageThreshold: {
     global: {
       branches: 80,
@@ -41,14 +41,7 @@ module.exports = {
   //coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
-  coverageReporters: [
-    "json-summary",
-     "json",
-     "text",
-     "lcov",
-     "clover"
-  ],
-
+  coverageReporters: ['json-summary', 'json', 'text', 'lcov', 'clover'],
 
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
@@ -150,9 +143,9 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-    testEnvironment: 'jsdom'
+  testEnvironment: 'jsdom',
 
-    // Options that will be passed to the testEnvironment
+  // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
 
   // Adds a location field to test results
@@ -180,6 +173,7 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   // transform: undefined,
+  transform: { '^.+\\.(ts|tsx|js|jsx)?$': 'ts-jest' },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [

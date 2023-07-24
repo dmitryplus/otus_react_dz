@@ -92,6 +92,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@types/styled-components": "^5.1.26",
     "@types/svg-parser": "^2.0.3",
+    "antd": "^5.7.2",
     "axios": "^1.4.0",
     "clsx": "^2.0.0",
     "css-mqpacker": "^7.0.0",
