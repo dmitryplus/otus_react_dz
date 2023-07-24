@@ -4,7 +4,7 @@ import { resetData, updateFilesList } from 'src/Redux/files';
 import { FileDispatch, State } from 'src/Types';
 import s from './FileList.module.sass';
 
-import { Button, Divider, List, Space, Typography } from 'antd';
+import { List, Space } from 'antd';
 import { GetLinkToGraph } from 'src/Services';
 import { Link } from 'react-router-dom';
 
