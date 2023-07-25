@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { SvgElement } from '../../Redux/svg';
+import { SvgElement } from '../../Types/Svg';
 
 interface NodeProps {
   params: SvgElement;
