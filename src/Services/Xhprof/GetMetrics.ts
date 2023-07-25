@@ -1,7 +1,5 @@
-import { Xhprof } from '../Types/xhprof';
+type functionResult = [string, string, string, string];
 
-type functionResult = [string];
-
-export const getMetrics = (rowData: Xhprof): functionResult => {
+export const getMetrics = (): functionResult => {
   return ['wt', 'cpu', 'mu', 'pmu'];
 };

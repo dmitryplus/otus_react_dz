@@ -1,17 +1,17 @@
-import { Xhprof, xprofParams } from '../Types/xhprof';
+import { Xhprof, xhprofParams } from '../../Types';
 import { computeInclusiveTimes } from './ComputeInclusiveTimes';
 import { getMetrics } from './GetMetrics';
 
 type functionResult = {
   symTable: object;
-  totals: xprofParams;
+  totals: xhprofParams;
 };
 
 export const computeFlatInfo = (rowData: Xhprof): functionResult => {
   const metrics = getMetrics(rowData);
 
   //TODO  вынести в состояние
-  const totals: xprofParams = {
+  const totals: xhprofParams = {
     ct: 0,
     wt: 0,
     ut: 0,

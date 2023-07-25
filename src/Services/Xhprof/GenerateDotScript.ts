@@ -1,4 +1,4 @@
-import { Xhprof } from '../Types/xhprof';
+import { Xhprof } from '../../Types/Xhprof';
 import {
   buildParentChildKey,
   computeFlatInfo,

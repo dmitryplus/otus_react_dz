@@ -1,4 +1,4 @@
-import { Xhprof } from '../Types/xhprof';
+import { Xhprof } from '../../Types/Xhprof';
 import { getMetrics } from './GetMetrics';
 import { parseParentChild } from './ParseParentChild';
 
