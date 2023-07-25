@@ -1,4 +1,4 @@
-import axios from '../../Hooks/axios';
+import axios from "axios";
 
 export const GetFilesList = async (): Promise<{ data: []; status: number }> => {
   const { data, status } = await axios.get('/files-list.json');

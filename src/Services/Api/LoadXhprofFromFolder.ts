@@ -1,5 +1,5 @@
 import { unserialize } from 'locutus/php/var';
-import axios from '../../Hooks/axios';
+import axios from "axios";
 
 const folder = '../Data/';
 
