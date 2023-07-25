@@ -9,6 +9,7 @@ import {
   parseParentChild,
 } from '../src/Services';
 import { unserialize } from 'locutus/php/var';
+//console.log(unserialize('a:4:{s:52:"SecondTestClass::getValue==>FirstTestClass::getValue";a:5:{s:2:"ct";i:1000;s:2:"wt";i:1902;s:3:"cpu";i:0;s:2:"mu";i:872;s:3:"pmu";i:0;}s:34:"main()==>SecondTestClass::getValue";a:5:{s:2:"ct";i:1000;s:2:"wt";i:6947;s:3:"cpu";i:6602;s:2:"mu";i:1472;s:3:"pmu";i:0;}s:33:"main()==>FirstTestClass::getValue";a:5:{s:2:"ct";i:1;s:2:"wt";i:2;s:3:"cpu";i:0;s:2:"mu";i:536;s:3:"pmu";i:0;}s:6:"main()";a:5:{s:2:"ct";i:1;s:2:"wt";i:10201;s:3:"cpu";i:9929;s:2:"mu";i:2680;s:3:"pmu";i:0;}}'));
 
 const emptyXhprof = { 'main()': { ct: 1, wt: 6, cpu: 0, mu: 824, pmu: 0 } };
 
@@ -17,7 +18,6 @@ const oneChildXhprof = {
   'main()': { ct: 1, wt: 6955, cpu: 9964, mu: 1464, pmu: 0 },
 };
 
-//console.log(unserialize('a:4:{s:52:"SecondTestClass::getValue==>FirstTestClass::getValue";a:5:{s:2:"ct";i:1000;s:2:"wt";i:1902;s:3:"cpu";i:0;s:2:"mu";i:872;s:3:"pmu";i:0;}s:34:"main()==>SecondTestClass::getValue";a:5:{s:2:"ct";i:1000;s:2:"wt";i:6947;s:3:"cpu";i:6602;s:2:"mu";i:1472;s:3:"pmu";i:0;}s:33:"main()==>FirstTestClass::getValue";a:5:{s:2:"ct";i:1;s:2:"wt";i:2;s:3:"cpu";i:0;s:2:"mu";i:536;s:3:"pmu";i:0;}s:6:"main()";a:5:{s:2:"ct";i:1;s:2:"wt";i:10201;s:3:"cpu";i:9929;s:2:"mu";i:2680;s:3:"pmu";i:0;}}'));
 
 const twoChildXhprof = {
   'SecondTestClass::getValue==>FirstTestClass::getValue': { ct: 1000, wt: 1572, cpu: 3328, mu: 872, pmu: 0 },
@@ -137,6 +137,20 @@ describe('Xhprof', () => {
       '\n}';
 
     expect(generateDotScript(emptyXhprof)).toBe(needResult);
+  });
+
+  test('generateDotScript for repeat call', async () => {
+    const needResult =
+      'digraph call_graph {\n' +
+      'N0[shape=box, label="FirstTestClass::getValue\\nInc: 1.904 ms (18.7%)\\nExcl: 1.904 ms (18.7%)\\n1001 total calls", width=0.9, height=0.7, fontsize=24, style=filled, fillcolor=yellow];\n' +
+      'N1[shape=box, label="SecondTestClass::getValue\\nInc: 6.947 ms (68.1%)\\nExcl: 6.947 ms (68.1%)\\n1000 total calls", width=3.4, height=2.4, fontsize=33, style=filled, fillcolor=red];\n' +
+      'N2[shape=octagon, label="Total: 10.201 ms\\nmain()\\nExcl: 10.201 ms (100.0%)\\n1 total calls", width=5.0, height=3.5, fontsize=35, style=filled, fillcolor=red];\n' +
+      'N1 -> N0[arrowsize=2, color=grey, style="setlinewidth(10)", label="1000 calls", headlabel="99.9%", taillabel="27.4%" ];\n' +
+      'N2 -> N1[arrowsize=2, color=grey, style="setlinewidth(10)", label="1000 calls", headlabel="100.0%", taillabel="68.1%" ];\n' +
+      'N2 -> N0[arrowsize=1, color=grey, style="setlinewidth(1)", label="1 call", headlabel="0.1%", taillabel="0.0%" ];' +
+      '\n\n}';
+
+    expect(generateDotScript(repeatCallXhprof)).toBe(needResult);
   });
 
   test('parseParentChild', async () => {
