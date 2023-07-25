@@ -12,10 +12,6 @@ export const computeInclusiveTimes = (rowData: Xhprof) => {
 
     const { parent, child } = parseParentChild(parent_child);
 
-    if (parent == child) {
-      throw new Error(`Error in Raw Data: parent & child are both: ${parent}`);
-    }
-
     if (symbol_tab[child] === undefined) {
       symbol_tab[child] = { ct: info.ct };
 
