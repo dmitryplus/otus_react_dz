@@ -8,8 +8,6 @@ import {
   getPossibleMetrics,
   parseParentChild,
 } from '../src/Services';
-import { unserialize } from 'locutus/php/var';
-//console.log(unserialize('a:4:{s:52:"SecondTestClass::getValue==>FirstTestClass::getValue";a:5:{s:2:"ct";i:1000;s:2:"wt";i:1902;s:3:"cpu";i:0;s:2:"mu";i:872;s:3:"pmu";i:0;}s:34:"main()==>SecondTestClass::getValue";a:5:{s:2:"ct";i:1000;s:2:"wt";i:6947;s:3:"cpu";i:6602;s:2:"mu";i:1472;s:3:"pmu";i:0;}s:33:"main()==>FirstTestClass::getValue";a:5:{s:2:"ct";i:1;s:2:"wt";i:2;s:3:"cpu";i:0;s:2:"mu";i:536;s:3:"pmu";i:0;}s:6:"main()";a:5:{s:2:"ct";i:1;s:2:"wt";i:10201;s:3:"cpu";i:9929;s:2:"mu";i:2680;s:3:"pmu";i:0;}}'));
 
 const emptyXhprof = { 'main()': { ct: 1, wt: 6, cpu: 0, mu: 824, pmu: 0 } };
 
