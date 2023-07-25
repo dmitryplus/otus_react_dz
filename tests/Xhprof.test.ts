@@ -134,6 +134,15 @@ describe('Xhprof', () => {
     expect(getChildrenTable(oneChildXhprof)).toStrictEqual({ 'main()': ['FirstTestClass::getValue'] });
   });
 
+  test('parseParentChild', async () => {
+    expect(parseParentChild('main()')).toStrictEqual({ child: 'main()', parent: null });
+
+    expect(parseParentChild('main()==>Nota\\Mentors\\Rest\\Order::composeReschedules')).toStrictEqual({
+      parent: 'main()',
+      child: 'Nota\\Mentors\\Rest\\Order::composeReschedules',
+    });
+  });
+
   test('generateDotScript', async () => {
     const needResult =
       'digraph call_graph {\n' +
@@ -157,12 +166,16 @@ describe('Xhprof', () => {
     expect(generateDotScript(repeatCallXhprof)).toBe(needResult);
   });
 
-  test('parseParentChild', async () => {
-    expect(parseParentChild('main()')).toStrictEqual({ child: 'main()', parent: null });
+  test('generateDotScript for repeat call with treshold', async () => {
 
-    expect(parseParentChild('main()==>Nota\\Mentors\\Rest\\Order::composeReschedules')).toStrictEqual({
-      parent: 'main()',
-      child: 'Nota\\Mentors\\Rest\\Order::composeReschedules',
-    });
+    const needResult =
+      'digraph call_graph {\n' +
+      'N0[shape=box, label="SecondTestClass::getValue\\nInc: 6.947 ms (68.1%)\\nExcl: 6.947 ms (68.1%)\\n1000 total calls", width=3.4, height=2.4, fontsize=33, style=filled, fillcolor=red];\n' +
+      'N1[shape=octagon, label="Total: 10.201 ms\\nmain()\\nExcl: 10.201 ms (100.0%)\\n1 total calls", width=5.0, height=3.5, fontsize=35, style=filled, fillcolor=red];\n' +
+      'N1 -> N0[arrowsize=2, color=grey, style="setlinewidth(10)", label="1000 calls", headlabel="100.0%", taillabel="68.1%" ];\n' +
+      '\n}';
+
+    expect(generateDotScript(repeatCallXhprof, 0.5)).toBe(needResult);
   });
+
 });
