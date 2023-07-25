@@ -89,6 +89,7 @@
     "webpack-dev-server": "^4.13.2"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.1.4",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/styled-components": "^5.1.26",
     "@types/svg-parser": "^2.0.3",

@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import 'antd/dist/antd.less';
-// import '@ant-design/compatible/assets/index.css';
 import './Styles/index.sass';
 
 import { App } from './App';
