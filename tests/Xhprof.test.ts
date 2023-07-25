@@ -18,7 +18,6 @@ const oneChildXhprof = {
   'main()': { ct: 1, wt: 6955, cpu: 9964, mu: 1464, pmu: 0 },
 };
 
-
 const twoChildXhprof = {
   'SecondTestClass::getValue==>FirstTestClass::getValue': { ct: 1000, wt: 1572, cpu: 3328, mu: 872, pmu: 0 },
   'main()==>SecondTestClass::getValue': { ct: 1000, wt: 5432, cpu: 6650, mu: 1472, pmu: 0 },
@@ -70,6 +69,11 @@ describe('Xhprof', () => {
   });
 
   test('computeFlatInfo', async () => {
+    expect(computeFlatInfo({})).toStrictEqual({
+      symTable: [],
+      totals: { ct: 0, wt: 0, ut: 0, st: 0, cpu: 0, mu: 0, pmu: 0, samples: 0 },
+    });
+
     expect(computeFlatInfo(emptyXhprof)).toStrictEqual({
       symTable: {
         'main()': {
