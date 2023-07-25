@@ -2,6 +2,8 @@ import {
   buildParentChildKey,
   computeFlatInfo,
   computeInclusiveTimes,
+  generateDotScript,
+  getChildrenTable,
   getMetrics,
   getPossibleMetrics,
 } from '../src/Services';
@@ -51,5 +53,18 @@ describe('Xhprof', () => {
       },
       totals: { ct: 1, wt: 6, ut: 0, st: 0, cpu: 0, mu: 824, pmu: 0, samples: 0 },
     });
+  });
+
+  test('getChildrenTable', async () => {
+    expect(getChildrenTable(emptyXhprof)).toStrictEqual({});
+  });
+
+  test('generateDotScript', async () => {
+    const needResult =
+      'digraph call_graph {\n' +
+      'N0[shape=octagon, label="Total: 0.006 ms\\nmain()\\nExcl: 0.006 ms (100.0%)\\n1 total calls", width=5.0, height=3.5, fontsize=35, style=filled, fillcolor=red];\n' +
+      '\n}';
+
+    expect(generateDotScript(emptyXhprof)).toBe(needResult);
   });
 });

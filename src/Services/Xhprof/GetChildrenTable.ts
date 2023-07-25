@@ -1,7 +1,6 @@
-import { Xhprof } from '../Types/xhprof';
-import { getPossibleMetrics } from './GetPossibleMetrics';
+import { Xhprof } from '../../Types/Xhprof';
 import { parseParentChild } from './ParseParentChild';
-import { ChildrenTable } from '../Types';
+import { ChildrenTable } from '../../Types';
 
 export const getChildrenTable = (rowData: Xhprof) => {
   const children_table: ChildrenTable = {};
