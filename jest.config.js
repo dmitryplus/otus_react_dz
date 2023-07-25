@@ -23,7 +23,7 @@ module.exports = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: 'docs/coverage',
+  coverageDirectory: 'dist/coverage',
   coverageThreshold: {
     global: {
       branches: 80,
@@ -33,9 +33,9 @@ module.exports = {
   },
 
   // An array of regexp pattern strings used to skip coverage collection
-  // coveragePathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  coveragePathIgnorePatterns: [
+    "/node_modules/"
+  ],
 
   // Indicates which provider should be used to instrument code for coverage
   //coverageProvider: "v8",
@@ -70,9 +70,9 @@ module.exports = {
   // maxWorkers: "50%",
 
   // An array of directory names to be searched recursively up from the requiring module's location
-  // moduleDirectories: [
-  //   "node_modules"
-  // ],
+  moduleDirectories: [
+    "node_modules"
+  ],
 
   // An array of file extensions your modules use
   // moduleFileExtensions: [
@@ -152,10 +152,13 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  // testMatch: [
-  //   "**/__tests__/**/*.[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).[tj]s?(x)"
-  // ],
+  testMatch: [
+    '<rootDir>/tests/*.test.js',
+    '<rootDir>/tests/*.test.ts',
+    '<rootDir>/tests/*.test.tsx',
+    // "**/__tests__/**/*.[jt]s?(x)",
+    // "**/?(*.)+(spec|test).[tj]s?(x)"
+  ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
@@ -173,7 +176,7 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   // transform: undefined,
-  transform: { '^.+\\.(ts|tsx|js|jsx)?$': 'ts-jest' },
+  //transform: { '^.+\\.(ts|tsx|js|jsx)?$': 'ts-jest' },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
