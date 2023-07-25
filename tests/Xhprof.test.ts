@@ -13,6 +13,10 @@ import { unserialize } from 'locutus/php/var';
 
 const emptyXhprof = { 'main()': { ct: 1, wt: 6, cpu: 0, mu: 824, pmu: 0 } };
 
+const emptyXhprofWithEmptyTimes = { 'main()': { ct: 1, wt: 0, cpu: 0, mu: 824, pmu: 0 } };
+
+const emptyXhprofWithMaxTimes = { 'main()': { ct: 0, wt: 5000, cpu: 0, mu: 0, pmu: 0 } };
+
 const oneChildXhprof = {
   'main()==>FirstTestClass::getValue': { ct: 1000, wt: 2074, cpu: 3316, mu: 856, pmu: 0 },
   'main()': { ct: 1, wt: 6955, cpu: 9964, mu: 1464, pmu: 0 },
@@ -167,7 +171,6 @@ describe('Xhprof', () => {
   });
 
   test('generateDotScript for repeat call with treshold', async () => {
-
     const needResult =
       'digraph call_graph {\n' +
       'N0[shape=box, label="SecondTestClass::getValue\\nInc: 6.947 ms (68.1%)\\nExcl: 6.947 ms (68.1%)\\n1000 total calls", width=3.4, height=2.4, fontsize=33, style=filled, fillcolor=red];\n' +
@@ -178,4 +181,23 @@ describe('Xhprof', () => {
     expect(generateDotScript(repeatCallXhprof, 0.5)).toBe(needResult);
   });
 
+  test('generateDotScript for empty times', async () => {
+    //console.log(generateDotScript(emptyXhprofWithEmptyTimes));
+
+    const needResult =
+      'digraph call_graph {\n' +
+      'N0[shape=octagon, label="Total: 0 ms\\nmain()\\nExcl: 0.000 ms (-NaN%)\\n1 total calls", width=0.3, height=0.2, fontsize=12];\n' +
+      '\n}';
+
+    expect(generateDotScript(emptyXhprofWithEmptyTimes)).toBe(needResult);
+  });
+
+  test('generateDotScript for max times', async () => {
+    const needResult =
+      'digraph call_graph {\n' +
+      'N0[shape=octagon, label="Total: 5 ms\\nmain()\\nExcl: 5.000 ms (100.0%)\\n0 total calls", width=5.0, height=3.5, fontsize=35, style=filled, fillcolor=red];\n' +
+      '\n}';
+
+    expect(generateDotScript(emptyXhprofWithMaxTimes)).toBe(needResult);
+  });
 });
