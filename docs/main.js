@@ -26238,7 +26238,7 @@ const GetFilesList = async () => {
   const {
     data,
     status
-  } = await axios__WEBPACK_IMPORTED_MODULE_0__["default"].get('/files-list.json');
+  } = await axios__WEBPACK_IMPORTED_MODULE_0__["default"].get('files-list.json');
   if (status !== 200) {
     throw new Error();
   }
@@ -26300,7 +26300,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "../node_modules/axios/lib/axios.js");
 
 
-const folder = '../Data/';
+const folder = '/Data/';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 const LoadXhprofFromFolder = async fileName => {
