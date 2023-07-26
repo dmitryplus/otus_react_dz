@@ -32,7 +32,7 @@ export const Canvas = () => {
     );
   }
 
-  return <p>empty</p>;
+  return <></>;
 };
 
 Canvas.displayName = 'Canvas';
