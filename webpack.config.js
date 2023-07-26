@@ -7,13 +7,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const src = path.join(__dirname, 'src');
 const dist = path.join(__dirname, 'dist');
 
+const createPath = (dirName) => path.resolve(__dirname, dirName);
+
+
 module.exports = {
   context: src,
   mode: 'development',
   entry: './index.tsx',
   output: {
     filename: `[name].js`,
-    path: dist,
+    path: createPath('docs'),
   },
   resolve: {
     modules: [src, 'node_modules'],
@@ -115,7 +118,7 @@ module.exports = {
       patterns: [
         {
           from: `${src}/favicon.ico`,
-          to: dist,
+          to: createPath('docs'),
         },
       ],
     }),
@@ -123,7 +126,7 @@ module.exports = {
       patterns: [
         {
           from: `${src}/Data`,
-          to: `${dist}/Data`,
+          to: createPath('docs/Data'),
         },
       ],
     }),
@@ -131,7 +134,7 @@ module.exports = {
       patterns: [
         {
           from: `${src}/files-list.json`,
-          to: dist,
+          to: createPath('docs/files-list.json'),
         },
       ],
     }),
