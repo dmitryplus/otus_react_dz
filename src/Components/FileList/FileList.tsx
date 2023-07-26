@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetData, updateFilesList } from 'src/Redux/files';
-import { FileDispatch, State } from 'src/Types';
+import { resetData, updateFilesList } from '../../Redux/files';
+import { FileDispatch, State } from '../../Types';
 import s from './FileList.module.sass';
 
 import { List, Space } from 'antd';
-import { GetLinkToGraph } from 'src/Services';
+import { GetLinkToGraph } from '../../Services';
 import { Link } from 'react-router-dom';
 
 export const FileList: FC = () => {

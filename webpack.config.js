@@ -4,22 +4,19 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const src = path.join(__dirname, 'src');
-const dist = path.join(__dirname, 'dist');
-
 const createPath = (dirName) => path.resolve(__dirname, dirName);
 
 
 module.exports = {
   context: createPath('src'),
   mode: 'development',
-  entry: './index.js',
+  entry: './index.tsx',
   output: {
     filename: `[name].js`,
     path: createPath('docs'),
   },
   resolve: {
-    modules: [src, 'node_modules'],
+    modules: [createPath('src'), 'node_modules'],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
       '@': createPath('src'),

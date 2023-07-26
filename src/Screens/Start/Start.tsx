@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Helmet } from 'react-helmet';
 import s from './Start.module.sass';
-import { FileList } from 'src/Components/FileList';
-import { Frame } from 'src/Components/Frame';
+import { FileList } from '../../Components/FileList';
+import { Frame } from '../../Components/Frame';
 import { Divider } from "antd";
 
 const Start: FC = () => (
