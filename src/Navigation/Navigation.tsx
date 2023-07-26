@@ -1,10 +1,10 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
-import Start from 'src/Screens/Start';
-import NotFound from 'src/Screens/NotFound';
-import { GetLinkToGraphTemplate } from 'src/Services';
-import { LoaderWrapper } from 'src/Components/LoaderWrapper';
+import Start from '../Screens/Start';
+import NotFound from '../Screens/NotFound';
+import { GetLinkToGraphTemplate } from '../Services';
+import { LoaderWrapper } from '../Components/LoaderWrapper';
 
 interface NavigationProps {
   children: any;

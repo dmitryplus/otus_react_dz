@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTreshold } from 'src/Redux/files';
+import { setTreshold } from '../../Redux/files';
 import s from './Threshold.module.sass';
-import { State } from 'src/Types';
+import { State } from '../../Types';
 import { Button, Input, Space } from 'antd';
 
 export const Threshold: React.FC = () => {
