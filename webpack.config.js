@@ -11,9 +11,9 @@ const createPath = (dirName) => path.resolve(__dirname, dirName);
 
 
 module.exports = {
-  context: src,
+  context: createPath('src'),
   mode: 'development',
-  entry: './index.tsx',
+  entry: './index.js',
   output: {
     filename: `[name].js`,
     path: createPath('docs'),
@@ -22,7 +22,7 @@ module.exports = {
     modules: [src, 'node_modules'],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
-      src,
+      '@': createPath('src'),
     },
   },
   devtool: 'source-map',
@@ -117,7 +117,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: `${src}/favicon.ico`,
+          from: createPath('src/favicon.ico'),
           to: createPath('docs'),
         },
       ],
@@ -125,7 +125,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: `${src}/Data`,
+          from: createPath('src/Data'),
           to: createPath('docs/Data'),
         },
       ],
@@ -133,7 +133,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: `${src}/files-list.json`,
+          from: createPath('src/files-list.json'),
           to: createPath('docs/files-list.json'),
         },
       ],
