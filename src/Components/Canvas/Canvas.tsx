@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { SvgElement } from '../../Redux/svg';
+import { SvgElement, State } from '../../Types';
 import { Node } from '../Node/Node';
-import { State } from '../../Types';
 
 export const Canvas = () => {
   const svgParams = useSelector((store: State) => store.svg.params);

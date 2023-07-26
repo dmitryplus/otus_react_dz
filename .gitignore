@@ -3,3 +3,6 @@ node_modules/
 dist/
 .jest/
 .DS_Store
+
+# stryker temp files
+.stryker-tmp
