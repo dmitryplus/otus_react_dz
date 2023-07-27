@@ -1,4 +1,8 @@
-.history
-.vscode
-node_modules
-dist
+node_modules/
+.idea/
+dist/
+.jest/
+.DS_Store
+
+# stryker temp files
+.stryker-tmp

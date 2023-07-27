@@ -1,5 +1,5 @@
-.history
-.vscode
 node_modules
+docs
 dist
-*.config.js
+src/stories
+jestSetupFile.js

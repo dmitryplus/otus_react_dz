@@ -1,20 +1,9 @@
-# OTUS: React.js Developer, домашние задания Плющенков Дмитрий
+[![cov](https://dmitryplus.github.io/otus_react_dz/badges/coverage.svg)](https://github.com/dmitryplus/otus_react_dz/actions)
 
-## Консольный калькулятор:
-Используемая конфигурация:
-* Babel
-* Webpack
-* Typescript
-* Eslint
-* Jest
-* Prepush hooks / husky
 
-## Запуск в консоли
+# Xhprof React Graph
 
-`npm run calc`
 
-Возможные операции: * / + - ( )
+Рабочий вариант проекта доступен по адресу
 
-## Запуск тестов
-
-`npm run test`
+https://dmitryplus.github.io/otus_react_dz/
