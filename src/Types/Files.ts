@@ -9,6 +9,12 @@ export interface FilesState {
   svg: string | null;
   error: string | null;
   threshold: number;
+  upload: [UploadRow] | null;
+}
+
+export interface UploadRow {
+  name: string,
+  data: string | ArrayBuffer
 }
 
 export type FileDispatch = ThunkDispatch<FilesState, any, AnyAction>;

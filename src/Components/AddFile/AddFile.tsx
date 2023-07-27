@@ -2,17 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, Upload } from 'antd';
 import type { UploadFile, UploadProps } from 'antd/es/upload/interface';
-import { setData, addFileToList } from '../../Redux/files';
+import { addFileToList, addUpload } from '../../Redux/files';
 import { useDispatch } from 'react-redux';
-import { GetLinkToGraph } from '../../Services';
-import { useNavigate } from 'react-router-dom';
+import { UploadRow } from 'src/Types';
 
 export const AddFile: React.FC = () => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const dispatch = useDispatch<any>();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     fileList.forEach((file) => {
@@ -20,11 +17,16 @@ export const AddFile: React.FC = () => {
 
       reader.readAsText(file);
 
-      dispatch(addFileToList(file.name));
+      reader.onload = function () {
+        dispatch(addFileToList(file.name));
 
-      dispatch(setData(reader.result));
+        const uploadFile: UploadRow = {
+          name: file.name,
+          data: reader.result,
+        };
 
-      navigate(GetLinkToGraph(file.name));
+        dispatch(addUpload(uploadFile));
+      };
     });
   }, [fileList]);
 

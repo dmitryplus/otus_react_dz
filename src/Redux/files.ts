@@ -41,6 +41,10 @@ export const filesSlice = createSlice({
       state.dot = null;
       state.svg = null;
       state.error = null;
+
+      if (typeof state.upload === 'undefined') {
+        state.upload = null;
+      }
     },
     createDotFromXhprof: (state = initialState) => {
       if (state.data != null && state.dot == null) {
@@ -52,6 +56,13 @@ export const filesSlice = createSlice({
     },
     addFileToList: (state = initialState, action) => {
       state.files = [...state.files, action.payload];
+    },
+    addUpload: (state = initialState, action) => {
+      if (state.upload === null) {
+        state.upload = [action.payload];
+      } else {
+        state.upload = [...state.upload, action.payload];
+      }
     },
   },
   extraReducers: (builder) => {
@@ -72,4 +83,4 @@ export const filesSlice = createSlice({
   },
 });
 
-export const { createDotFromXhprof, resetData, setTreshold, setData, addFileToList } = filesSlice.actions;
+export const { createDotFromXhprof, resetData, setTreshold, setData, addFileToList, addUpload } = filesSlice.actions;
