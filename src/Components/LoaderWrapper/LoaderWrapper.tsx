@@ -51,6 +51,5 @@ export function LoaderWrapper() {
     );
   }
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <></>;
+  return null;
 }

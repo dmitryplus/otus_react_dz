@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest -u",
+    "test": "jest",
     "build": "webpack",
     "calc": "ts-node src/consoleCalculator.ts",
     "js": "node dist/index.js",
