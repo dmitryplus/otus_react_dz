@@ -47,6 +47,12 @@ export const filesSlice = createSlice({
         state.dot = generateDotScript(state.data, state.threshold);
       }
     },
+    setData: (state = initialState, action) => {
+      state.data = action.payload;
+    },
+    addFileToList: (state = initialState, action) => {
+      state.files = [...state.files, action.payload];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(updateFilesList.fulfilled, (state, action) => {
@@ -66,4 +72,4 @@ export const filesSlice = createSlice({
   },
 });
 
-export const { createDotFromXhprof, resetData, setTreshold } = filesSlice.actions;
+export const { createDotFromXhprof, resetData, setTreshold, setData, addFileToList } = filesSlice.actions;
