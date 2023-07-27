@@ -29605,15 +29605,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "../node_modules/@ant-design/icons/es/icons/UploadOutlined.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "../node_modules/antd/es/upload/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "../node_modules/antd/es/button/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ant-design/icons */ "../node_modules/@ant-design/icons/es/icons/UploadOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "../node_modules/antd/es/upload/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "../node_modules/antd/es/button/index.js");
 /* harmony import */ var _Redux_files__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Redux/files */ "./Redux/files.ts");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "../node_modules/react-redux/es/index.js");
-/* harmony import */ var _Services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services */ "./Services/index.ts");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "../node_modules/react-router/dist/index.js");
-
-
 
 
 
@@ -29622,14 +29618,18 @@ __webpack_require__.r(__webpack_exports__);
 const AddFile = () => {
   const [fileList, setFileList] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
-  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     fileList.forEach(file => {
       const reader = new FileReader();
       reader.readAsText(file);
-      dispatch((0,_Redux_files__WEBPACK_IMPORTED_MODULE_1__.addFileToList)(file.name));
-      dispatch((0,_Redux_files__WEBPACK_IMPORTED_MODULE_1__.setData)(reader.result));
-      navigate((0,_Services__WEBPACK_IMPORTED_MODULE_3__.GetLinkToGraph)(file.name));
+      reader.onload = function () {
+        dispatch((0,_Redux_files__WEBPACK_IMPORTED_MODULE_1__.addFileToList)(file.name));
+        const uploadFile = {
+          name: file.name,
+          data: reader.result
+        };
+        dispatch((0,_Redux_files__WEBPACK_IMPORTED_MODULE_1__.addUpload)(uploadFile));
+      };
     });
   }, [fileList]);
   const props = {
@@ -29641,8 +29641,8 @@ const AddFile = () => {
     },
     fileList
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(antd__WEBPACK_IMPORTED_MODULE_5__["default"], props, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__["default"], null)
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(antd__WEBPACK_IMPORTED_MODULE_3__["default"], props, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_5__["default"], null)
   }, "\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C (.xhprof)")));
 };
 
@@ -29887,11 +29887,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "../node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "../node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "../node_modules/react-router/dist/index.js");
 /* harmony import */ var _MouseWrapper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../MouseWrapper */ "./Components/MouseWrapper/index.ts");
 /* harmony import */ var _Redux_files__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Redux/files */ "./Redux/files.ts");
 /* harmony import */ var _Error__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Error */ "./Components/Error/index.ts");
 /* harmony import */ var _Panel_Panel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Panel/Panel */ "./Components/Panel/Panel.tsx");
+/* harmony import */ var locutus_php_var__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! locutus/php/var */ "../node_modules/locutus/php/var/index.js");
+
 
 
 
@@ -29904,16 +29906,29 @@ function LoaderWrapper() {
   const filesList = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(store => store.files.files);
   const dotData = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(store => store.files.dot);
   const originalSvg = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(store => store.files.svg);
+  const uploadRows = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(store => store.files.upload);
   const isError = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(store => store.files.error);
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const {
     filename
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)();
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useParams)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (filename != null && xhprofData === null && filesList.includes(filename)) {
-      dispatch((0,_Redux_files__WEBPACK_IMPORTED_MODULE_3__.loadXhprofData)(filename));
+    if (filename === null || xhprofData != null || !filesList.includes(filename)) {
+      return;
     }
-  }, [xhprofData]);
+    if (uploadRows !== null) {
+      const uploadRow = uploadRows.filter(row => row.name === filename);
+      console.log('uploadRow', uploadRow);
+      if (uploadRow.length) {
+        dispatch((0,_Redux_files__WEBPACK_IMPORTED_MODULE_3__.setData)((0,locutus_php_var__WEBPACK_IMPORTED_MODULE_6__.unserialize)(uploadRow[0].data)));
+        return;
+      }
+    }
+
+    //  if (filename != null && xhprofData === null && filesList.includes(filename)) {
+    dispatch((0,_Redux_files__WEBPACK_IMPORTED_MODULE_3__.loadXhprofData)(filename));
+    //  }
+  }, [xhprofData, uploadRows]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (xhprofData != null) {
       dispatch((0,_Redux_files__WEBPACK_IMPORTED_MODULE_3__.createDotFromXhprof)());
@@ -30343,6 +30358,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "addFileToList": function() { return /* binding */ addFileToList; },
+/* harmony export */   "addUpload": function() { return /* binding */ addUpload; },
 /* harmony export */   "createDotFromXhprof": function() { return /* binding */ createDotFromXhprof; },
 /* harmony export */   "filesSlice": function() { return /* binding */ filesSlice; },
 /* harmony export */   "getSvgFromGraphviz": function() { return /* binding */ getSvgFromGraphviz; },
@@ -30391,6 +30407,9 @@ const filesSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)
       state.dot = null;
       state.svg = null;
       state.error = null;
+      if (typeof state.upload === 'undefined') {
+        state.upload = null;
+      }
     },
     createDotFromXhprof: (state = initialState) => {
       if (state.data != null && state.dot == null) {
@@ -30402,6 +30421,13 @@ const filesSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)
     },
     addFileToList: (state = initialState, action) => {
       state.files = [...state.files, action.payload];
+    },
+    addUpload: (state = initialState, action) => {
+      if (state.upload === null) {
+        state.upload = [action.payload];
+      } else {
+        state.upload = [...state.upload, action.payload];
+      }
     }
   },
   extraReducers: builder => {
@@ -30426,7 +30452,8 @@ const {
   resetData,
   setTreshold,
   setData,
-  addFileToList
+  addFileToList,
+  addUpload
 } = filesSlice.actions;
 
 /***/ }),
